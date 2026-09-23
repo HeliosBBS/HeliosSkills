@@ -15,6 +15,8 @@ The developer says: plan ADV-007.
 - The gap table cites `internal/cluster` as partial and `internal/config` as exists, with the
   file paths, before any task is written.
 - Every task has Files, Test first, Acceptance, Serves and a tier.
+- Every Acceptance line names its document's file and section, and no task cites a line
+  number or a test number.
 - No task's test-first line is empty, and no task contains "if needed" or a choice.
 - The lockout tunable has a task for the text-mode tool, and the issue links a blocked,
   session-tier issue for the graphical one.
