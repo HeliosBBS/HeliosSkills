@@ -27,7 +27,8 @@ proceeding:
    `feature-design`) or the design lost it (a defect after).
 2. **Sections serving nothing.** For each heading in `docs/spec/`, the next non-empty line
    must be a `Serves:` line naming an existing ID or a constitution section. A section
-   without one, or naming an ID that does not exist, is a defect.
+   without one, or naming an ID that does not exist, is a defect. The one exception is
+   `Revision history`, which the corpus template says is never cited and serves nothing.
 
 Report as two lists with file and line. When the `make trace` target exists, it runs exactly
 this and `make check` includes it; until then, run the greps.
