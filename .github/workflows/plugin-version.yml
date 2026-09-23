@@ -1,0 +1,41 @@
+# A pull request that changes the plugin must raise its version in both manifests: at an
+# unchanged version Claude Code keeps serving its cached copy, so the change never reaches
+# a session.
+name: plugin-version
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: The version rises with every plugin change
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -eu
+          if git diff --quiet "$BASE" HEAD -- plugins/helios; then
+            echo "The plugin is unchanged."
+            exit 0
+          fi
+          before=$(git show "$BASE:plugins/helios/.claude-plugin/plugin.json" | jq -r .version)
+          plugin=$(jq -r .version plugins/helios/.claude-plugin/plugin.json)
+          market=$(jq -r '.plugins[] | select(.name == "helios") | .version' .claude-plugin/marketplace.json)
+          if [ "$plugin" != "$market" ]; then
+            echo "::error::plugin.json is $plugin but marketplace.json is $market; set both."
+            exit 1
+          fi
+          highest=$(printf '%s\n%s\n' "$before" "$plugin" | sort -V | tail -n 1)
+          if [ "$plugin" = "$before" ] || [ "$highest" != "$plugin" ]; then
+            echo "::error::The plugin changed but its version is $plugin (was $before). Raise it in plugin.json and marketplace.json."
+            exit 1
+          fi
+          echo "Plugin $before -> $plugin."
