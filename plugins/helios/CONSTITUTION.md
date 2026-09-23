@@ -101,7 +101,24 @@ detailed enough that Sonnet 5 at high effort builds most of it with a stronger m
   surgical and reviewable; a whole-document rewrite happens only as a ruled regeneration.
 - **No open questions in a finished spec.**
 
-## 6. How this file is used
+## 6. Research is allowed; other people's code is not
+
+Reading anything to understand how a problem has been solved is legitimate: public standards,
+documentation, papers, other systems' observed behaviour and, where their licence allows
+reading it, their source. Facts, protocols, file formats and algorithms are not owned by
+anyone. Their expression is. So:
+
+- Never copy code from another project into this estate, however renamed, reformatted or
+  lightly edited, whatever its licence.
+- Never implement by paraphrasing another project's source or mirroring its file, function or
+  comment structure. Write your own notes on the behaviour, close the source, and implement
+  from the notes.
+- Briefs, specs, issues, commits and comments describe this project's own design; they never
+  say where the understanding came from.
+- An implementation that comes out structurally close to something you read is raised, not
+  shipped.
+
+## 7. How this file is used
 
 Loaded first, unchanged, by every skill, every prompt and every loop iteration. A change to it
 is a pull request the developer approves, and nothing else edits it.
