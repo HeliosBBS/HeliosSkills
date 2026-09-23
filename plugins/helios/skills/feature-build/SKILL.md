@@ -63,6 +63,11 @@ Anything labelled `security-sensitive` goes to the hostile reviewer: the same tw
 prompted to break it, with the `security-checklist`. Fix findings before committing. A
 reviewer's self-report is not proof; the test is.
 
+The developer's own code (a session-tier task, a GUI issue) gets the same two stages against
+the same spec sections. The reviewer is told the author is the developer and that this
+changes nothing: a spec deviation is a finding whoever wrote it, and the developer either
+fixes the code or amends the spec through `feature-design`, never by a reviewer's silence.
+
 ## 5. Commit, tick, learn, stop
 
 - Commit atomically with the task's title, referencing the issue (`#<n>`, never `Closes` until

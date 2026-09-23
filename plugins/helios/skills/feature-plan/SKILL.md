@@ -34,7 +34,9 @@ Rules:
 - Small: if a task needs more than one test to describe, split it.
 - Tests first, always; the test names the behaviour before the code exists.
 - Every permission check gets its negative-path task. Every audit entry gets its task.
-- Every sysop tunable gets its two config-tool tasks, in the same plan as the code.
+- Every sysop tunable gets its text-mode tool task in this plan, and the plan's issue links
+  one issue for the graphical tool: blocked on this plan's PR, session-tier (the developer
+  writes the forms), planned when that PR merges.
 - The last task is verification through the real surface (a real Telnet or SSH session, a
   real HTTP call) against the brief's scenarios; a feature is not done without it.
 - Order by dependency; a task never depends on a later one.
