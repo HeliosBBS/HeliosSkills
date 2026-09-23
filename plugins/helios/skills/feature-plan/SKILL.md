@@ -22,7 +22,7 @@ not is a session that will guess. Record the table at the top of the plan.
 Each task is one sitting for a Sonnet 5 session at high effort with no judgment left in it:
 
 ```
-- [ ] <n>. <what lands>  [tier: sonnet|opus|session]
+- [ ] <n>. <what lands>  [tier: haiku|sonnet|opus|session]   or   [tier: opus, effort: max]
       Files: <exact paths, new or changed>
       Test first: <test name>: <what it asserts, and what it must fail on before the change>
       Acceptance: <the derived negative tests it satisfies, by their lines in the design>
@@ -46,6 +46,10 @@ Rules:
   it (it should not be, but say so); `session` for anything that changes the architecture or a
   contract another repository consumes, meaning an interactive session with the developer.
   The loop runs the task on that tier and raises it on the routing triggers; it never lowers it.
+- **Effort** is high unless the tag says otherwise, and most tags say nothing. `effort: low`
+  marks a mechanical task that still needs the codebase in view (a dependency, a version
+  constant, a key declaration); `effort: max` marks a task where the reasoning is the whole
+  task (a state machine, a privilege model). A route-up raises the model and keeps the effort.
 - Security-sensitive tasks say so, and say only the work, never the exploit path.
 
 ## 3. The analyze gate
