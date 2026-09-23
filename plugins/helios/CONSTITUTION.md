@@ -43,7 +43,7 @@ A regression test is verified against the reverted fix before it counts.
 
 ## 3. Multi-node from the start
 
-Anything that runs as a service runs as several cooperating nodes against one store, and every
+Anything that runs as a service runs as several cooperating nodes against one database, and every
 design assumes it:
 
 - identifiers that cannot collide across nodes;
@@ -87,7 +87,7 @@ detailed enough that Sonnet 5 at high effort builds most of it with a stronger m
   source path, and never cites code. The stack is a separate decision in `docs/stack.md`,
   outside the corpus, which the corpus never cites; the specs must read the same if that
   file changed.
-- **Storage as logical schema plus stated properties**, in generic terms: entities, fields,
+- **The database as a logical schema plus stated properties**, in generic terms: entities, fields,
   keys and constraints, atomic check-then-act, a cluster mutex, error classes, identity and
   time sources, and a best-effort, commit-gated notification bus. No schema file, migration or
   query language is referenced; the physical mapping lives in `docs/stack.md`.

@@ -40,13 +40,13 @@ them and in spec terms where the spec will hold them:
 - **Data model**, as logical schema plus stated properties, in generic terms: entities, fields,
   keys that cannot collide across nodes, constraints, which operations are check-then-act and
   how they are made atomic, error classes, identity and time sources. No schema file, migration
-  or query language; a reader in any language must be able to build the store from it.
+  or query language; a reader in any language must be able to build the database from it.
 - **State machine**, with every input class in every state: the normal input, the invalid
   input, the timeout, the disconnect, the duplicate, the concurrent action from another
   session and from another node. An unhandled cell is a defect.
 - **Fail directions.** For every dependency the feature calls, what happens when it fails, and
   in which direction. Access gates fail closed.
-- **Multi-node invariants.** Which state lives only in the store, which jobs may run twice and
+- **Multi-node invariants.** Which state lives only in the database, which jobs may run twice and
   how they are idempotent, every cache and counter with its invalidation rule.
 - **Audit entries.** Every state-changing operator action, with the fields it records.
 - **Config-tool footprint.** Every sysop tunable: key, default, kind, and which of the setup

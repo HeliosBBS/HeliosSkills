@@ -40,7 +40,7 @@ Every dependency, what happens when it fails, and in which direction. Access gat
 
 ## Multi-node invariants
 Serves: ...
-What lives only in the store; which jobs may run twice and how they are idempotent; every cache and counter with its invalidation rule.
+What lives only in the database; which jobs may run twice and how they are idempotent; every cache and counter with its invalidation rule.
 
 ## Audit
 Serves: ...
@@ -64,7 +64,7 @@ Dated, one-line, past-tense entries. Last section, never cited, optional.
 ```
 
 `architecture.md` uses the same sections at the level of the whole system. The stack (languages,
-store, physical mapping, build tooling) is not in the corpus at all: it is `docs/stack.md`, a
+database, physical mapping, build tooling) is not in the corpus at all: it is `docs/stack.md`, a
 decision record the specs never cite, so that the corpus reads the same in any language.
 
 ## Delta blocks
