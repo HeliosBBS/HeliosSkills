@@ -75,19 +75,22 @@ and linked work in the others.
 
 ## 5. Spec rules
 
-A spec is a reconstruction contract: a developer or a model builds the software from the corpus
-alone, tests included, and specs are detailed enough that Sonnet 5 at high effort builds most
-of it with a stronger model reviewing.
+A spec is a reconstruction contract: any developer or model rebuilds the system from the
+corpus alone, without the source, tests included, in whatever language they choose. Specs are
+detailed enough that Sonnet 5 at high effort builds most of it with a stronger model reviewing.
 
 - **Self-contained.** Nothing outside the corpus except public standards and the contracts
   other Helios projects publish, cited by name and version. No process files, issue or PR
   numbers, hashes, dated rulings or provenance in a body. A revision history is allowed only
   as the last section: dated, one-line, past-tense entries.
-- **Language-agnostic.** The stack is named once, in the architecture, as a decision. No
-  language idiom anywhere else.
-- **Storage as logical schema plus stated properties**: atomic check-then-act, a cluster
-  mutex, error classes, identity and time sources, and a best-effort, commit-gated
-  notification bus. One physical mapping, in the architecture.
+- **Language-neutral.** The corpus never names a language, library, framework, file or
+  source path, and never cites code. The stack is a separate decision in `docs/stack.md`,
+  outside the corpus, which the corpus never cites; the specs must read the same if that
+  file changed.
+- **Storage as logical schema plus stated properties**, in generic terms: entities, fields,
+  keys and constraints, atomic check-then-act, a cluster mutex, error classes, identity and
+  time sources, and a best-effort, commit-gated notification bus. No schema file, migration or
+  query language is referenced; the physical mapping lives in `docs/stack.md`.
 - **Every number says its kind**: a fixed policy backstop, a calibration target, or a sysop
   tunable with its default and key. A sysop tunable is a setting the board's operator changes.
 - **No language that goes stale.** No self-counts, no "the only exception", no "currently".

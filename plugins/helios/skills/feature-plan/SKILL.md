@@ -38,11 +38,12 @@ Rules:
 - The last task is verification through the real surface (a real Telnet or SSH session, a
   real HTTP call) against the brief's scenarios; a feature is not done without it.
 - Order by dependency; a task never depends on a later one.
-- **Tier** is the routing table's shape rule: mechanical and fully specified is `sonnet`;
-  design judgment left in the task (it should not be, but say so) is `opus`; anything that
-  changes the architecture or a contract another repository consumes is `session`, meaning it
-  runs in an interactive session with the developer. The tier is a floor the loop may raise,
-  never lower.
+- **Tier** is the model the task needs, by shape, not by where its files live: `haiku` for
+  purely mechanical work with one right answer (a rename, a generated file, a fixture, a doc
+  line); `sonnet` for fully specified implementation; `opus` for a task with reasoning left in
+  it (it should not be, but say so); `session` for anything that changes the architecture or a
+  contract another repository consumes, meaning an interactive session with the developer.
+  The loop runs the task on that tier and raises it on the routing triggers; it never lowers it.
 - Security-sensitive tasks say so, and say only the work, never the exploit path.
 
 ## 3. The analyze gate
@@ -68,8 +69,8 @@ the design is fixed by `feature-design`, not by a plan that works around it.
 Create or update the work item so its body follows the issue form's rendered shape (the
 headings `### Files`, `### Exact change`, `### Reason`, `### Security-sensitive`,
 `### Priority`, `### Kind`, `### Plan`), with the gap table and the checklist under `### Plan`.
-Labels: the priority, the kind, `security-sensitive` if any task is, `unattended-loop` if every
-task is `sonnet` or `opus`. Link the design PR and the brief. If the plan spans repositories,
+Labels: the priority, the kind, `security-sensitive` if any task is, `unattended-loop` if no
+task is `session`. Link the design PR and the brief. If the plan spans repositories,
 one issue per repository, the owner's first, linked as sub-issues or dependencies.
 
 The plan checklist is a gate: no code until it is there. Say what comes next: `feature-build`,

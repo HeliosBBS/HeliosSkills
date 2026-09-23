@@ -20,5 +20,6 @@ The developer says: plan ADV-007.
 - The last task is verification through a real client session.
 - The analyze table is printed with every row filled and no failed row.
 - The plan is written into the issue body under `### Plan` and the issue carries a priority,
-  a kind and `unattended-loop` (all tasks are `sonnet` or `opus`).
+  a kind and `unattended-loop` (no task is `session`).
+- At least one purely mechanical task (the config key's registration, say) is tagged `haiku`.
 - No source file is changed.
