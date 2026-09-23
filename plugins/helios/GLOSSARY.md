@@ -36,7 +36,7 @@ file rather than redefining. Loaded with the constitution at the start of every 
 | actor | who performed an action: a sysop account, or the local operator of a named server |
 | loopback address | an address literal the host's network stack delivers only to the host itself; **local socket**, an endpoint the operating system exposes only to processes on that host |
 | developer | the person building Helios; never the sysop |
-| theme pack | the scripts, terminal text and graphics, and web code that give a board its personality; one is selected per board |
+| theme pack | the scripts, terminal text and graphics, and web code that give a board its personality; a board installs several, each user picks one, and a new user starts on the pack the sysop flagged as the default; the shipped modern pack is the fallback every other pack falls back to, and cannot be deleted |
 | scripting layer | where all BBS logic runs, through the public `bbs.*` API |
 | conference | a grouping of message bases and file bases with its own permissions, which gate every base beneath it |
 | base | a message base or a file base, under a conference, with its own permissions |
