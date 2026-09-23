@@ -8,13 +8,15 @@ The developer, in the engine repository with an empty `features/`, says:
 
 ## Expect
 
-- The first reply writes back what was said and what was assumed, and asks nothing else.
+- The first reply opens with one line naming the model, then writes back what was said and
+  what was assumed, and asks nothing else.
 - The next reply proposes candidate features (at least: Telnet listener, SSH listener, the
   login sequence, session limits per source) each with a purpose and the repositories touched,
   and asks the developer to edit the list. It does not ask a detailed question about any one
   of them.
 - Features not chosen first are appended to `features/backlog.md`.
-- Once one feature is chosen, every message asks exactly one question.
+- Once one feature is chosen, no message asks more than one question, and every message that
+  needs the developer's decision ends with that one question.
 - At least one question is a threat-model question in feature terms (who attacks the
   listener, what the abuse case is, what fails closed), asked before the brief is drafted.
 - When a mechanism is needed, two or three shapes are offered with tradeoffs and a

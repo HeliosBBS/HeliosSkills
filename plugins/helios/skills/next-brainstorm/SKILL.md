@@ -15,8 +15,9 @@ skill argues for a pick and never makes it.
 3. **Rank** by, in order: what the most other entries depend on (it unblocks the most); what
    the developer has said matters (their words in the backlog and briefs); what reshapes
    existing briefs or plans least if done later (settle foundations first); size.
-4. **Recommend one** with its reasoning in two or three sentences, then list the next few
-   ready entries, one line each with the reason it ranks there. Name any entry that cannot
-   start yet and what it waits on, in one line.
+4. **Recommend one** with its reasoning in three sentences at most, including the strongest
+   case against it (no echo chamber: argue with yourself too), then list the other ready
+   entries, one line each and no more, with the reason it ranks there. Name any entry that
+   cannot start yet and what it waits on, in one line.
 5. **On the developer's pick** (the recommendation or any other), run `feature-brainstorm` on
    it, taking the backlog entry as the developer's words for the write-back.

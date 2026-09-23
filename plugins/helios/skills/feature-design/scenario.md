@@ -19,7 +19,8 @@ The developer says: design ADV-007.
 - The state machine covers, for each state, the wrong code, the timeout, the disconnect, a
   second concurrent join attempt, and the database being unreachable.
 - The fail direction for an unreachable database is refusal, matching the brief.
-- Every derived negative test has a matching `If` scenario or permission check.
+- Every derived negative test names its source: an `If` scenario, a permission check, a
+  security decision, or a failure or concurrency cell of the state machine.
 - The spec delta is ADDED/MODIFIED/REMOVED blocks tagged `Serves: ADV-007`, not a rewrite of
   the cluster spec.
 - The critic runs before anything is shown to the developer, and its report quotes the text

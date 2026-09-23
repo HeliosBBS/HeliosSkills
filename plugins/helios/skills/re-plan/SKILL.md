@@ -35,12 +35,14 @@ gap analysis against the code as it now is, which includes what the ticked tasks
 ## 4. Show the difference, in chunks
 
 Four lists, each task with a one-line reason: kept as it was, changed (what and why), struck
-(why), added (why). Chunks short enough to read in one sitting; the developer approves each.
+(why), added (why). A reason names its source: the design hand-over's impact list, or the
+specification section and the pull request that changed it. Chunks short enough to read in one sitting; the developer approves each.
 A task changed by a later approval is shown again.
 
 ## 5. Write it, on approval only
 
 Replace the issue's plan with the approved one, comment the four lists as the record, and
 remove `blocked`: approving the new plan is the decision to let the loop resume. An issue
-the design makes obsolete (a whole plan struck) is closed with that comment instead, on the
-developer's word.
+the design makes obsolete (a whole plan struck) is raised as a question in the last chunk;
+no plan, comment or issue says it is closed until the developer has answered yes, and then
+it is closed with that comment.

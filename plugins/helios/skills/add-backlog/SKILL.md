@@ -14,7 +14,7 @@ here is designed.
    second.
 2. **Draft the entry** in the file's shape: a bold name, what it does and for whom in the
    developer's words (tidy the grammar, never the meaning), what the developer has already
-   decided about it, and `Depends on:` the entries or briefs it needs. Place it under the
+   decided about it, and `Depends on:` the entries or briefs it needs directly (not what those already depend on). Place it under the
    heading where it belongs. If it changes an existing entry's dependencies, say which.
 3. **Show the exact lines and where they go.** Ask only what the entry cannot be written
    without, one question at a time; otherwise state the assumption in the draft.

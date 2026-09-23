@@ -10,9 +10,9 @@ make, that is a routing trigger, not an invitation to decide.
 
 ## The model check
 
-Before anything else, say which model this session runs on, as your system prompt names it,
-and the effort level if it is visible to you; say plainly when it is not, because a session
-cannot see its own effort. The task's tag says what it wants; the loop sets it, and an
+Open your first reply with one line naming the model this session runs on, as your system
+prompt names it, and the effort level if it is visible to you, or that it is not (a session
+cannot see its own effort); then carry on in the same reply. The task's tag says what it wants; the loop sets it, and an
 interactive session matches it. Below the tag, say so and stop until the developer switches
 (`/model`, `/effort`) or says continue; above it is never a reason to stop.
 
