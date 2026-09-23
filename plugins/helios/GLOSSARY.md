@@ -56,3 +56,9 @@ file rather than redefining. Loaded with the constitution at the start of every 
 | plan | the checklist in an issue that a session executes without judgment |
 | task, tier | one box in a plan, and the model it runs on: haiku, sonnet, opus, or session |
 | sysop tunable | a setting the board's operator changes, with a key, a default and a kind |
+| Admin API | the board's one network interface for administration: every administration tool reaches the board through it on any server, never through the database |
+| allow list | the Admin API's list of entries (an address, an address range or a hostname), each naming the accounts or roles it admits, checked on every request before a password can be tried; empty admits only the server's own host, which is always admitted |
+| console token | what `hadv-console` holds between sign-ins: bound to a key pair generated on that device, allowed console actions only, with a lifetime counted from sign-in and an idle expiry |
+| automation token | a named credential a signed-in sysop creates for scripts and automation, scoped by the settings groups it may read and change, never able to manage tokens, roles, accounts or second-factor rules; its secret is shown once and never stored |
+| exempt source | an address that stands for many callers (a gateway, a load tester, a shared address), listed so that per-source throttling and sign-in slowdown do not treat it as one caller; separate from the trusted proxy list |
+| loosening | a change that makes the board less secure than it was; it warns loudly, takes effect only on confirmation, is audited, needs an explicit acknowledgement on the command line, and is documented in the sysop guide |
