@@ -1,0 +1,15 @@
+{
+  "name": "helios",
+  "owner": { "name": "HeliosBBS" },
+  "metadata": {
+    "description": "The Helios estate's skills, hooks and shared constitution."
+  },
+  "plugins": [
+    {
+      "name": "helios",
+      "source": "./plugins/helios",
+      "description": "Feature-first development for the Helios repositories: brainstorm, design, plan, build, compound, and the hooks that enforce the mechanical rules.",
+      "version": "0.1.0"
+    }
+  ]
+}
