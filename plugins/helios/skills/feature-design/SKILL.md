@@ -119,8 +119,13 @@ and ask for the approval again; an approval covers the text the developer saw.
   is served by at least one section.
 - Commit on a branch and open a pull request titled `Design: <ID> <name>` whose description
   is the section list; `docs/spec/` is developer-owned and merges on review.
+- **The impact list.** Name every section of an existing specification this design changes,
+  every open plan task it overturns (issue, task, and why), and every open issue it makes
+  obsolete. Put the list in the design pull request's description and the design record, and
+  comment it on each affected issue; `re-plan` starts from it.
 - Record the session as `records/<ID>-design.md` in `HeliosBBS/HeliosDesign`, by pull
   request as the developer: the constraints, the clean-room comparison and the choice, each
   critic pass with its counts and verdict, every ruling the developer gave and who proposed
   it, and each section's approval. The design pull request links to it.
-- Say what comes next: `feature-plan` once the design is merged.
+- Say what comes next: `feature-plan` once the design is merged, and `re-plan` for each issue
+  the impact list names.

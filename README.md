@@ -19,7 +19,7 @@ A repository enables it in `.claude/settings.json`:
 |---|---|
 | `plugins/helios/CONSTITUTION.md` | the shared constitution; each repository's own `CONSTITUTION.md` adds only what is specific to it |
 | `plugins/helios/contracts.md` | the register of interfaces between repositories |
-| `plugins/helios/skills/` | `feature-brainstorm`, `feature-design`, `feature-plan`, `feature-build`, `compound`, and the supporting `security-checklist`, `traceability`, `contracts-register`, `corpus-template`, `skill-test`; each ships a `scenario.md` it must pass |
+| `plugins/helios/skills/` | `feature-brainstorm`, `feature-design`, `feature-plan`, `feature-build`, `compound`; the commands `add-backlog`, `next-brainstorm` and `re-plan`; and the supporting `security-checklist`, `traceability`, `contracts-register`, `corpus-template`, `skill-test`; each ships a `scenario.md` it must pass |
 | `plugins/helios/hooks/` | session-start loads the constitutions; pre-tool denies the loop's identity on developer-owned paths; post-edit formats; stop refuses to end a turn on a red `make check`; `test.sh` proves them |
 
 A change here is a pull request the developer approves. Run `sh plugins/helios/hooks/test.sh`
