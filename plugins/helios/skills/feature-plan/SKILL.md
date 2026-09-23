@@ -33,12 +33,18 @@ Each task is one sitting for a Sonnet 5 session at high effort with no judgment 
 - [ ] <n>. <what lands>  [tier: haiku|sonnet|opus|session]   or   [tier: opus, effort: max]
       Files: <exact paths, new or changed>
       Test first: <test name>: <what it asserts, and what it must fail on before the change>
-      Acceptance: <the derived negative tests it satisfies, by their lines in the design>
+      Acceptance: <document file name, section, and each negative test by its first words>
       Serves: <feature ID>
 ```
 
 Rules:
 
+- **Cite by name, never by line number or test number.** An acceptance line names the
+  document's file (`cluster.md`), the section, and a negative test by its opening words
+  (`cluster.md, Negative tests: "Re-plan with a caller on an affected node"`). Lines and
+  numbers shift with every edit above them; names do not. The file name is required: when a
+  specification change merges, `work stale` blocks every open plan whose unticked tasks name
+  a changed file, so a task that names none is never flagged.
 - Small: if a task needs more than one test to describe, split it.
 - Tests first, always; the test names the behaviour before the code exists.
 - Every permission check gets its negative-path task. Every audit entry gets its task.
