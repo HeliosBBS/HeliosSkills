@@ -9,6 +9,14 @@ A plan is disposable. A wrong plan is regenerated from the design, not patched. 
 plan becomes hundreds of bad lines of code, so the developer reads the whole plan; write it for
 them as much as for the session that will execute it.
 
+## The model check
+
+Before anything else, say which model this session runs on, as your system prompt names it,
+and the effort level if it is visible to you; say plainly when it is not, because a session
+cannot see its own effort. A plan wants Opus or stronger at high effort. Below that, say so
+and stop until the developer switches (`/model`, `/effort`) or says continue; above it is
+never a reason to stop.
+
 ## 1. Gap analysis: never assume "not implemented"
 
 For every contract, mechanism, entity, setting and test the design names, search the code

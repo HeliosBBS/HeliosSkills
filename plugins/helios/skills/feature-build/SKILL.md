@@ -8,6 +8,14 @@ description: Use when a work item with a plan checklist is claimed and a task is
 One task. Fresh context. The plan already made every decision; if you find one it did not
 make, that is a routing trigger, not an invitation to decide.
 
+## The model check
+
+Before anything else, say which model this session runs on, as your system prompt names it,
+and the effort level if it is visible to you; say plainly when it is not, because a session
+cannot see its own effort. The task's tag says what it wants; the loop sets it, and an
+interactive session matches it. Below the tag, say so and stop until the developer switches
+(`/model`, `/effort`) or says continue; above it is never a reason to stop.
+
 ## 0. Baseline, or stop
 
 - Work in the worktree for this issue (`feature/issue-<n>-<slug>`), created from `development`.
