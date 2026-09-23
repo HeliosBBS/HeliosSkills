@@ -119,4 +119,8 @@ and ask for the approval again; an approval covers the text the developer saw.
   is served by at least one section.
 - Commit on a branch and open a pull request titled `Design: <ID> <name>` whose description
   is the section list; `docs/spec/` is developer-owned and merges on review.
+- Record the session as `records/<ID>-design.md` in `HeliosBBS/HeliosDesign`, by pull
+  request as the developer: the constraints, the clean-room comparison and the choice, each
+  critic pass with its counts and verdict, every ruling the developer gave and who proposed
+  it, and each section's approval. The design pull request links to it.
 - Say what comes next: `feature-plan` once the design is merged.

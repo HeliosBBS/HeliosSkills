@@ -103,11 +103,11 @@ in `docs/spec/` changes here. Then:
 
 - Save the brief under `features/`. If the feature spans repositories, the brief lives in the
   repository that owns the user-visible behaviour and names the others.
-- Record the session in `HeliosBBS/HeliosDesign` as a Discussion titled `<ID> brainstorm`:
-  the write-back, each question with the answer and reason, the shapes offered and the one
-  chosen. That repository is private; the brief links to it. Create it with
-  `gh api graphql` (`createDiscussion` with the repository's and the Brainstorms category's
-  IDs, both from a `repository` query).
+- Record the session as `records/<ID>-brainstorm.md` in `HeliosBBS/HeliosDesign`: the
+  write-back, each question with the answer and reason, the shapes offered and the one
+  chosen, and who decided each. That repository is private; the brief's status line links to
+  the file. Commit it as the developer on a branch there and open a pull request, as for the
+  brief; any session can, local or cloud.
 - Commit the brief and backlog on a branch and open a pull request; `features/` is
   developer-owned and merges on the developer's review.
 - Say what comes next: `feature-design` for this brief.
