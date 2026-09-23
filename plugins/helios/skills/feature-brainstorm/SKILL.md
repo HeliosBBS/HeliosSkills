@@ -13,6 +13,14 @@ One question per message. No echo chamber: when the developer is wrong, or you w
 developer would otherwise have to type (how classic boards did it, what the protocols allow)
 and ask only for what is theirs to decide.
 
+## The model check
+
+Before anything else, say which model this session runs on, as your system prompt names it,
+and the effort level if it is visible to you; say plainly when it is not, because a session
+cannot see its own effort. A brainstorm wants Fable in-session or Opus, at high effort. Below
+that, say so and stop until the developer switches (`/model`, `/effort`) or says continue;
+above it is never a reason to stop.
+
 ## 0. Write back before asking anything
 
 Restate what you heard in two lists: **what was said** and **what I assumed**. The developer

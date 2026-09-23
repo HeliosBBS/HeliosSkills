@@ -8,6 +8,15 @@ description: Use when an approved feature brief exists and the developer asks to
 The brief is the authority. You derive from it; you never rule out something it asks for. If
 the brief is wrong, the developer amends the brief; you do not design around it.
 
+## The model check
+
+Before anything else, say which model this session runs on, as your system prompt names it,
+and the effort level if it is visible to you; say plainly when it is not, because a session
+cannot see its own effort. The constraints, the design and the comparison want Fable
+in-session or Opus, at high effort; critics are dispatched at Opus; applying and presenting
+need no more than Sonnet. Below what the step wants, say so and stop until the developer
+switches (`/model`, `/effort`) or says continue; above it is never a reason to stop.
+
 ## 1. Extract the constraints
 
 Before reading any existing spec, list every constraint the design must satisfy, each with
