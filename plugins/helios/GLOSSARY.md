@@ -26,15 +26,15 @@ file rather than redefining. Loaded with the constitution at the start of every 
 | screen boundary | the moment a session finishes sending a screen and waits for input, and again when the input arrives; for a web session, the end of a request |
 | reconcile | a server's clean-up when it regains the database: releasing nodes whose sessions are gone |
 | trusted proxy list | the board-wide list of address ranges whose peers are believed when they ask for detailed health |
-| management listener | a server's HTTP listener for administration and detailed health, bound to loopback unless the sysop binds it to a management network; the **public listener** is the one callers reach |
+| management listener | a server's HTTP listener for detailed health, bound to loopback unless the sysop binds it to a management network; the **public listener** is the one callers reach |
 | generation | the counter a server increases each time it acquires its lease; a node claim records it, so a claim from a lease that has since been lost is void |
-| high-water mark | the highest node number ever assigned on a board; numbers below it are never assigned again except by a re-plan |
+| high-water mark | the highest node number assigned on a board since the last re-plan; numbers below it are never assigned again except by a re-plan |
 | occupancy rule | a node is occupied exactly when its occupant fields are set, its claim generation equals its owner's lease generation, its owner is active, and its owner's lease expiry is later than the database clock; otherwise it is free |
-| local lease deadline | a server's own clock reading at which its last successful renewal was sent plus the lease timeout that renewal wrote; never later than the database's expiry |
+| local lease deadline | a server's own clock reading at which its last successful renewal or acquisition was sent plus the lease timeout it wrote; never later than the database's expiry |
 | registry | the declared settings, built at start-up from every subsystem's declarations; **scope**, whether a setting has one value for the board or one per server; **apply mode**, whether a change applies live or at the next start; **snapshot**, a server's in-memory copy of the values it needs |
-| connectivity setting | a server-scoped setting the local operator may change through the setup tool because it can be what stands between the server and the board: its listen addresses and its bootstrap record |
+| connectivity setting | a server-scoped setting the local operator may change through the setup tool because it can be what stands between the server and the board: its listen addresses; the bootstrap record, which is not a setting, is also the local operator's to change |
 | actor | who performed an action: a sysop account, or the local operator of a named server |
-| principal | who is acting, as access control sees it: a **sysop account**, a **caller** (a session that sessions v1 vouches for), or the **local operator** of a named server; **permission**, a named capability the one authorisation check grants or denies |
+| principal | who is acting, as access control sees it: a **sysop account**, a **caller** (a session that sessions v1 vouches for), the **local operator** of a named server, or the **first-run operator** (whoever holds the database administrator's credential during first-run setup); **permission**, a named capability the one authorisation check grants or denies |
 | open connection | an accepted connection counted against a listener's limit |
 | exclusive hold, shared hold | an exclusive hold on a row makes any other transaction that wants to hold or change it wait; a shared hold lets other shared holders proceed and makes an exclusive holder wait; **compare-and-set**, a write whose predicate names the values it expects and reports whether it changed anything; **increasing identifier**, one the database generates, never reuses and never moves backwards |
 | hold order | the one global order in which every transaction takes its holds, so no two transactions wait on each other; **operation deadline**, the time a transaction is allowed before it is Unavailable |

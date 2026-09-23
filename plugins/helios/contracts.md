@@ -1,8 +1,9 @@
 # Contracts register
 
-Every interface that crosses a repository boundary in the Helios estate. A spec cites a
-contract by its name and version here; the `contracts-register` skill has the rules for
-changing one.
+Every interface that crosses a repository boundary in the Helios estate, and every engine
+contract that a feature not yet designed must honour because an existing specification
+already consumes it. A spec cites a contract by its name and version here; the
+`contracts-register` skill has the rules for changing one.
 
 | Contract | Owner | Version | Specification | Consumers | What it is |
 |---|---|---|---|---|---|
