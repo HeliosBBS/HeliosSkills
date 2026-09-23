@@ -16,16 +16,16 @@ file rather than redefining. Loaded with the constitution at the start of every 
 | inter-server bus | how servers tell each other something changed; a mechanism of the stack, named in `docs/stack.md`, never in a spec |
 | lease | a server's proof of life in the database, with an expiry on the database clock and a generation, renewed on a schedule; a node belongs to a live lease |
 | sysop | the operator of a running board; **co-sysop**, a limited administrator |
-| local operator | whoever runs the setup tool on a server's host; authenticated by possession of that host's bootstrap record; reaches only what restores that server's connectivity |
+| local operator | whoever runs the setup tool on a server's host, authenticated by possession of that host's bootstrap record; the setup tool offers them only what restores that server's connectivity, and stopping or starting it; they also hold that server's database login and are trusted as a server |
 | setup tool | `hadv-setup`: first run, join, and a server's connectivity, run on the host by the local operator |
 | runtime configuration tools | `hadv-config` and `hadv-config-gui`: every board and server setting, run by a sysop against any server |
 | bootstrap record | the file on a server's disk holding what it needs to reach the database and nothing else: identity, database address and trust anchor, its own login, its transport choice, the key-encryption key |
 | key-encryption key | the board's key under which sensitive fields are encrypted at rest; held in every server's bootstrap record, never in the database |
 | layout | the assignment of node-number ranges to servers; **re-plan**, the sysop's explicit operation that packs every range from node 1 upward |
-| occupancy | whether a node is taken: occupied only while its owner's lease is live and the claim matches that lease's generation; otherwise free |
+| occupancy | whether a node is taken, decided by the occupancy rule and nothing else |
 | screen boundary | the moment a session finishes sending a screen and waits for input, and again when the input arrives; for a web session, the end of a request |
 | reconcile | a server's clean-up when it regains the database: releasing nodes whose sessions are gone |
-| trusted proxy list | the board-wide list of address ranges from which detailed health, and later forwarded caller addresses, are believed |
+| trusted proxy list | the board-wide list of address ranges whose peers are believed when they ask for detailed health |
 | management listener | a server's HTTP listener for administration and detailed health, bound to loopback unless the sysop binds it to a management network; the **public listener** is the one callers reach |
 | generation | the counter a server increases each time it acquires its lease; a node claim records it, so a claim from a lease that has since been lost is void |
 | high-water mark | the highest node number ever assigned on a board; numbers below it are never assigned again except by a re-plan |
@@ -34,13 +34,21 @@ file rather than redefining. Loaded with the constitution at the start of every 
 | registry | the declared settings, built at start-up from every subsystem's declarations; **scope**, whether a setting has one value for the board or one per server; **apply mode**, whether a change applies live or at the next start; **snapshot**, a server's in-memory copy of the values it needs |
 | connectivity setting | a server-scoped setting the local operator may change through the setup tool because it can be what stands between the server and the board: its listen addresses and its bootstrap record |
 | actor | who performed an action: a sysop account, or the local operator of a named server |
+| principal | who is acting, as access control sees it: a **sysop account**, a **caller** (a session that sessions v1 vouches for), or the **local operator** of a named server; **permission**, a named capability the one authorisation check grants or denies |
+| open connection | an accepted connection counted against a listener's limit |
+| exclusive hold, shared hold | an exclusive hold on a row makes any other transaction that wants to hold or change it wait; a shared hold lets other shared holders proceed and makes an exclusive holder wait; **compare-and-set**, a write whose predicate names the values it expects and reports whether it changed anything; **increasing identifier**, one the database generates, never reuses and never moves backwards |
+| hold order | the one global order in which every transaction takes its holds, so no two transactions wait on each other; **operation deadline**, the time a transaction is allowed before it is Unavailable |
+| applied change | the database's record that one data-model change has been applied, so it is never applied twice; **data-model change**, a change to the entities or constraints shipped with an engine version |
+| layout position | the order in which a re-plan packs servers' ranges, assigned once from the board's counter |
+| settings version | the counter every setting change increases, carried on every lease renewal so a server knows its snapshot is behind; **started settings version**, the version a server's process loaded first, against which restart-needed is judged |
+| node handle | what a surface holds for one claimed node: the node number and the session identifier; **caller reference**, the opaque identity of a caller that sessions v1 resolves to a display name |
 | loopback address | an address literal the host's network stack delivers only to the host itself; **local socket**, an endpoint the operating system exposes only to processes on that host |
 | developer | the person building Helios; never the sysop |
 | theme pack | the scripts, terminal text and graphics, and web code that give a board its personality; a board installs several, each user picks one, and a new user starts on the pack the sysop flagged as the default; the shipped modern pack is the fallback every other pack falls back to, and cannot be deleted |
 | scripting layer | where all BBS logic runs, through the public `bbs.*` API |
 | conference | a grouping of message bases and file bases with its own permissions, which gate every base beneath it |
 | base | a message base or a file base, under a conference, with its own permissions |
-| estate | the seven Helios repositories developed together |
+| estate | the six Helios projects developed together, and the repositories that serve them: the skills plugin, the tools, the design notes and the shared defaults |
 | brief | a feature in the developer's words, in `features/`, the authority for everything derived from it |
 | spec | a derived document in `docs/spec/`: the architecture or one subsystem |
 | plan | the checklist in an issue that a session executes without judgment |
