@@ -58,12 +58,12 @@ Six projects are developed together, and each other's needs are inputs to every 
 
 | Project | Role | Owns | Consumes |
 |---|---|---|---|
-| HeliosAdvance | the BBS engine | the public JSON API and its OpenAPI description | the door wire protocol's host side |
-| HeliosDoorKit | wire protocol and SDKs for BBS doors | the door wire protocol | nothing from the engine |
+| HeliosAdvance | the BBS engine; it does not launch doors itself | the public JSON API and its OpenAPI description | the door hosting protocol |
+| HeliosDoorKit | wire protocol and SDKs for BBS doors, not tied to any one BBS | the door wire protocol | nothing from the engine |
+| HeliosDoors | a BBS-agnostic door hosting service, a separate daemon any supporting BBS can hand callers to | the door hosting protocol | the door wire protocol's host side |
 | HeliosPortal | web client with an address book for many boards | its own UI | the public JSON API |
 | HeliosSIP | SIP-to-SSH gateway for dial-up over VoIP | its own gateway | SSH or Telnet, nothing more |
 | HeliosLoadTest | load-test harness for a running board | its own drivers | the engine's client surfaces |
-| HeliosDoors | doors built on the Door Kit | the doors | the Door Kit SDK |
 
 They were carved out on one principle, and it holds for anything else that leaves the engine:
 **a separate project's interface to the engine is a protocol, a wire format, or nothing.**
