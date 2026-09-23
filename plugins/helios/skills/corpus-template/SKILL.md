@@ -48,8 +48,8 @@ Every state-changing operator action and the fields its entry records.
 
 ## Configuration
 Serves: ...
-| Key | Default | Kind | Exposed by |
-Kind is fixed backstop, calibration target, or sysop tunable. Exposed by names the setup tool, the runtime tool, or both.
+| Key | Default | Kind | Scope | Apply | Exposed by |
+Kind is fixed policy backstop, calibration target, or sysop tunable (with its validation). Scope is board or server, or fixed for a number that is not a setting. Apply is live or restart. Exposed by names the setup tool, the runtime configuration tools, both, or "not exposed" for a fixed number.
 
 ## Security considerations
 Serves: ...
