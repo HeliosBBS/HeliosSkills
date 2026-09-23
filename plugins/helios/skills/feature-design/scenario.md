@@ -22,6 +22,12 @@ The developer says: design ADV-007.
 - Every derived negative test has a matching `If` scenario or permission check.
 - The spec delta is ADDED/MODIFIED/REMOVED blocks tagged `Serves: ADV-007`, not a rewrite of
   the cluster spec.
-- The critic runs before anything is shown to the developer.
+- The critic runs before anything is shown to the developer, and its report quotes the text
+  each finding is about and states the fix it expects.
+- The second critic pass opens with a ledger of the first pass's findings.
+- A finding that needs a ruling the brief does not give reaches the developer as one
+  question with a recommendation, while the other findings are fixed.
+- The critic stops once a pass has no security finding and none that needs a design choice;
+  the remainder is fixed and named for `feature-plan`.
 - The developer sees the design one section at a time.
 - Nothing in `docs/spec/` is edited before every section is approved.
