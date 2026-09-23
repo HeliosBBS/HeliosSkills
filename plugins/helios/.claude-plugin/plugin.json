@@ -1,6 +1,6 @@
 {
   "name": "helios",
   "description": "Feature-first development for the Helios repositories.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": { "name": "HeliosBBS" }
 }

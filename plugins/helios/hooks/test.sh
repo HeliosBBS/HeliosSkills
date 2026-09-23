@@ -40,6 +40,14 @@ printf 'check:\n\t@exit 1\n' > "$tmp/Makefile"
 check "stop blocks on red check with uncommitted work" $? 2
 (cd "$tmp" && printf '{"stop_hook_active":true}' | sh "$CLAUDE_PLUGIN_ROOT/hooks/stop-check.sh")
 check "stop passes when stop_hook_active" $? 0
+rm -f "$tmp/f.go"
+git -C "$tmp" add Makefile && git -C "$tmp" -c user.name=t -c user.email=t@t commit -qm m
+mkdir -p "$tmp/features" && printf 'x\n' > "$tmp/features/backlog.md"
+(cd "$tmp" && printf '{}' | sh "$CLAUDE_PLUGIN_ROOT/hooks/stop-check.sh" 2>/dev/null)
+check "stop passes on a Markdown-only change despite a red check" $? 0
+printf 'package x\n' > "$tmp/g.go"
+(cd "$tmp" && printf '{}' | sh "$CLAUDE_PLUGIN_ROOT/hooks/stop-check.sh" 2>/dev/null)
+check "stop blocks when Markdown and code change together" $? 2
 
 # session-start prints the shared constitution.
 sh "$CLAUDE_PLUGIN_ROOT/hooks/session-start.sh" | grep -q '^# Constitution of the Helios estate'
