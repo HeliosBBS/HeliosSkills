@@ -10,7 +10,7 @@ make, that is a routing trigger, not an invitation to decide.
 
 ## 0. Baseline, or stop
 
-- Work in the worktree for this issue (`issue-<n>-<slug>`), created from `development`.
+- Work in the worktree for this issue (`feature/issue-<n>-<slug>`), created from `development`.
 - Run `make bootstrap` and `make check`. Red before you have changed anything means the
   baseline is broken: do not build on it; record it on the issue as a human-action item and
   stop.
