@@ -37,7 +37,9 @@ their tradeoffs, the way the node-join pairing code was chosen: a code shown on 
 channel, fitting the security need exactly.
 
 Access gates fail closed on any error. Auth, RBAC, session handling and event fan-out each have
-exactly one implementation. Every state-changing operator action writes an audit entry. Every
+exactly one implementation; a program that cannot share it carries a second only where the
+architecture lists that duplication and the owning spec's negative tests run against both.
+Every state-changing operator action writes an audit entry. Every
 permission check has a negative-path test that forces its dependency to fail and asserts denial.
 A regression test is verified against the reverted fix before it counts.
 
