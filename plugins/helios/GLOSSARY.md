@@ -10,7 +10,7 @@ file rather than redefining. Loaded with the constitution at the start of every 
 | server | one running instance of the engine, joined to a board, with its own hardware limits |
 | node | one logged-in caller slot, with a board-wide stable number; each server's nodes are a contiguous range derived from its configured node count |
 | caller | a person connected to the board by any surface, logged in or not |
-| session | a caller's time on a node, from login to logout or loss of connection |
+| session | a caller's time on a node, from login to logout or loss of connection; an operator's signed-in time is an **interactive session**, never a bare "session" |
 | surface | a way callers reach the board: Telnet, Telnet over TLS, SSH, the web |
 | database | the board's single source of truth, shared by every server; always "database", never "store" |
 | inter-server bus | how servers tell each other something changed; a mechanism of the stack, named in `docs/stack.md`, never in a spec |
@@ -18,14 +18,14 @@ file rather than redefining. Loaded with the constitution at the start of every 
 | sysop | the operator of a running board; **co-sysop**, a limited administrator |
 | local operator | whoever runs the setup tool on a server's host, authenticated by possession of that host's bootstrap record; the setup tool offers them only what restores that server's connectivity, and stopping or starting it; they also hold that server's database login and are trusted as a server |
 | setup tool | `hadv-setup`: first run, join, and a server's connectivity, run on the host by the local operator |
-| runtime configuration tools | `hadv-config` and `hadv-config-gui`: every board and server setting, run by a sysop against any server |
+| runtime configuration tools | `hadv-config` and `hadv-config-gui`: every board and server setting, run by a sysop from any computer the allow list admits, through the Admin API |
 | bootstrap record | the file on a server's disk holding what it needs to reach the database and nothing else: identity, database address and trust anchor, its own login, its transport choice, the key-encryption key |
 | key-encryption key | the board's key under which sensitive fields are encrypted at rest; held in every server's bootstrap record, never in the database |
 | layout | the assignment of node-number ranges to servers; **re-plan**, the sysop's explicit operation that packs every range from node 1 upward |
 | occupancy | whether a node is taken, decided by the occupancy rule and nothing else |
 | screen boundary | the moment a session finishes sending a screen and waits for input, and again when the input arrives; for a web session, the end of a request |
 | reconcile | a server's clean-up when it regains the database: releasing nodes whose sessions are gone |
-| trusted proxy list | the board-wide list of address ranges whose peers are believed when they ask for detailed health |
+| trusted proxy list | the board-wide list of address ranges whose peers are believed when they ask for detailed health, and whose PROXY protocol headers the Admin API believes and requires |
 | management listener | a server's HTTP listener for detailed health, bound to loopback unless the sysop binds it to a management network; the **public listener** is the one callers reach |
 | generation | the counter a server increases each time it acquires its lease; a node claim records it, so a claim from a lease that has since been lost is void |
 | high-water mark | the highest node number assigned on a board since the last re-plan; numbers below it are never assigned again except by a re-plan |
@@ -33,8 +33,8 @@ file rather than redefining. Loaded with the constitution at the start of every 
 | local lease deadline | a server's own clock reading at which its last successful renewal or acquisition was sent plus the lease timeout it wrote; never later than the database's expiry |
 | registry | the declared settings, built at start-up from every subsystem's declarations; **scope**, whether a setting has one value for the board or one per server; **apply mode**, whether a change applies live or at the next start; **snapshot**, a server's in-memory copy of the values it needs |
 | connectivity setting | a server-scoped setting the local operator may change through the setup tool because it can be what stands between the server and the board: its listen addresses; the bootstrap record, which is not a setting, is also the local operator's to change |
-| actor | who performed an action: a sysop account, the local operator of a named server, the first-run operator, or the engine itself |
-| principal | who is acting, as access control sees it: a **sysop account**, a **caller** (a session that sessions v1 vouches for), the **local operator** of a named server, or the **first-run operator** (whoever the database accepted with the administrator credential through the setup tool, at first run, at an upgrade or for a secret reset); **permission**, a named capability the one authorisation check grants or denies |
+| actor | who performed an action: an account, an unknown account (a sign-in whose typed name resolved to none), the local operator of a named server, the first-run operator, or the engine itself |
+| principal | who is acting, as access control sees it: an **operator account** (an account acting through a credential the Admin API verified), a **sign-in principal** (as admin-api defines it), a **caller** (a session that sessions v1 vouches for), the **local operator** of a named server, or the **first-run operator** (whoever the database accepted with the administrator credential through the setup tool, at first run, at an upgrade or for a secret reset); **permission**, a named capability the one authorisation check grants or denies |
 | open connection | an accepted connection counted against a listener's limit |
 | exclusive hold, shared hold | an exclusive hold on a row makes any other transaction that wants to hold or change it wait; a shared hold lets other shared holders proceed and makes an exclusive holder wait; **compare-and-set**, a write whose predicate names the values it expects and reports whether it changed anything; **increasing identifier**, one the database generates, never reuses and never moves backwards |
 | hold order | the one global order in which every transaction takes its holds, so no two transactions wait on each other; **operation deadline**, the time a transaction is allowed before it is Unavailable |
@@ -60,5 +60,21 @@ file rather than redefining. Loaded with the constitution at the start of every 
 | allow list | the Admin API's list of entries (an address, an address range or a hostname), each naming the accounts or roles it admits, checked on every request before a password can be tried; empty admits only the server's own host, which is always admitted |
 | console token | what `hadv-console` holds between sign-ins: bound to a key pair generated on that device, allowed console actions only, with a lifetime counted from sign-in and an idle expiry |
 | automation token | a named credential a signed-in sysop creates for scripts and automation, scoped by the settings groups it may read and change, never able to manage tokens, roles, accounts or second-factor rules; its secret is shown once and never stored |
-| exempt source | an address that stands for many callers (a gateway, a load tester, a shared address), listed so that per-source throttling and sign-in slowdown do not treat it as one caller; separate from the trusted proxy list |
+| exempt source | an address that stands for many callers (a gateway, a load tester, a shared address), listed so that per-source throttling and sign-in slowdown on the caller surfaces do not treat it as one caller; never exempt on the Admin API; separate from the trusted proxy list |
 | loosening | a change that makes the board less secure than it was; it warns loudly, takes effect only on confirmation, is audited, needs an explicit acknowledgement on the command line, and is documented in the sysop guide |
+| administration tool | a program a sysop or co-sysop runs to administer the board through the Admin API: the runtime configuration tools, the console, and those later features add |
+| host connection | a connection to the Admin API through the local endpoint; the only connection that is "the server's own host" |
+| local endpoint | a server's Admin API endpoint on its own host that the operating system restricts to the engine's service account and the host's administrators, never reachable over a network |
+| source address | the address a connection to the Admin API is judged by: its peer, the address in a PROXY header from a trusted proxy, or `local` for a host connection |
+| credential | what a tool presents on each Admin API request: an interactive session, a console token or an automation token, each belonging to one account |
+| interactive session | a credential from a sign-in, held only in the tool's memory, ending when the tool closes, idles or reaches its lifetime |
+| console device | a device key a console signed in with, remembered per account so a new one is flagged to every Sysop |
+| sign-in attempt | the short span between a verified password and the second factor |
+| settings group | a named set of settings, the unit an automation token's scope and a settings permission's target name |
+| loosening finding | one reason, computed by the engine, that a change is a loosening |
+| confirmation | the digest of a change and its loosening findings, given back to confirm the loud warning was seen |
+| relayed action | an action a tool asks for on a server other than the one it reached, carried through the database |
+| board signing key | the board's key that signs each server's Admin API certificate; tools pin it |
+| board identifier | the identifier each server's Admin API certificate carries, pinned with the board signing key |
+| second factor | a proof beyond the password that an account's role may require, such as a one-time code or a passkey |
+| account #1 | the board's first account, its owner, which always holds the Sysop role and is never locked |
