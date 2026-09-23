@@ -63,9 +63,9 @@ One line each, derived from the brief's `If` scenarios and every permission chec
 Dated, one-line, past-tense entries. Last section, never cited, optional.
 ```
 
-`architecture.md` uses the same sections at the level of the whole engine, plus one section
-`## Stack` that names the languages, the store and the physical mapping once; no other
-document names them.
+`architecture.md` uses the same sections at the level of the whole system. The stack (languages,
+store, physical mapping, build tooling) is not in the corpus at all: it is `docs/stack.md`, a
+decision record the specs never cite, so that the corpus reads the same in any language.
 
 ## Delta blocks
 
@@ -87,5 +87,6 @@ Reason: <the feature or ruling that removes it>
 
 Applying a block merges it into its section and changes nothing else in the document. Rules
 that hold across every document: nothing outside the corpus except public standards and
-registered contracts; no process references; no language idiom; no stale language; each
-mechanism stated once, in its owner, cited by name elsewhere; no open questions.
+registered contracts; no process references; no language, library, file, path, schema file or
+query language named; no stale language; each mechanism stated once, in its owner, cited by
+name elsewhere; no open questions.

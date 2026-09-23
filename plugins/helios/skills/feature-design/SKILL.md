@@ -37,9 +37,10 @@ them and in spec terms where the spec will hold them:
 - **Contracts.** Each interface provided or consumed, by name and version. A change to a
   contract another repository consumes is owner-first: it lands in the owning repository with
   a version bump before any consumer changes.
-- **Data model**, as logical schema plus stated properties: entities, keys that cannot collide
-  across nodes, which operations are check-then-act and how they are made atomic, error
-  classes, identity and time sources.
+- **Data model**, as logical schema plus stated properties, in generic terms: entities, fields,
+  keys that cannot collide across nodes, constraints, which operations are check-then-act and
+  how they are made atomic, error classes, identity and time sources. No schema file, migration
+  or query language; a reader in any language must be able to build the store from it.
 - **State machine**, with every input class in every state: the normal input, the invalid
   input, the timeout, the disconnect, the duplicate, the concurrent action from another
   session and from another node. An unhandled cell is a defect.
