@@ -24,7 +24,7 @@ the task states, not for a compile error or a missing fixture. A test that passe
 change is the wrong test; stop and say so.
 
 Go tests: standard `testing`, table-driven, `t.Parallel()` where independent, real sockets and
-temp files rather than I/O mocks, the store-backed tests against the real Postgres from
+temp files rather than I/O mocks, the database-backed tests against the real Postgres from
 `make bootstrap`. A negative-path test forces the dependency to fail and asserts denial.
 
 ## 2. Green

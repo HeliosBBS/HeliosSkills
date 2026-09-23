@@ -18,7 +18,7 @@ sysop's console, a configuration tool):
 2. What is the abuse case: spam, enumeration of users or codes, locking others out, exhausting
    connections or storage, escalating a role, replaying a message, acting from two nodes at
    once?
-3. What happens when a dependency fails (the store, the clock, the peer, the exporter)? The
+3. What happens when a dependency fails (the database, the clock, the peer, the exporter)? The
    answer that denies is the fail-closed answer; anything else needs a reason in the brief.
 4. What must be logged for the sysop to see it happened, and what must never be logged (a
    password, a session token, a pairing code)?
@@ -35,7 +35,7 @@ sysop's console, a configuration tool):
   asserts denial.
 - Every identifier is unforgeable and cannot collide across nodes; every check-then-act is
   atomic.
-- Every counter that gates something (attempts, rate, quota) lives in the store, states its
+- Every counter that gates something (attempts, rate, quota) lives in the database, states its
   invalidation, and cannot be reset by the party it limits.
 - Secrets are never in code, tests, config examples, logs or issue text.
 - A security-sensitive issue or PR describes the work, never the exploit path.
