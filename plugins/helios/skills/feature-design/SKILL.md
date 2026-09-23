@@ -10,9 +10,9 @@ the brief is wrong, the developer amends the brief; you do not design around it.
 
 ## The model check
 
-Before anything else, say which model this session runs on, as your system prompt names it,
-and the effort level if it is visible to you; say plainly when it is not, because a session
-cannot see its own effort. The constraints, the design and the comparison want Fable
+Open your first reply with one line naming the model this session runs on, as your system
+prompt names it, and the effort level if it is visible to you, or that it is not (a session
+cannot see its own effort); then carry on in the same reply. The constraints, the design and the comparison want Fable
 in-session or Opus, at high effort; critics are dispatched at Opus; applying and presenting
 need no more than Sonnet. Below what the step wants, say so and stop until the developer
 switches (`/model`, `/effort`) or says continue; above it is never a reason to stop.
@@ -52,7 +52,9 @@ them and in spec terms where the spec will hold them:
   or query language; a reader in any language must be able to build the database from it.
 - **State machine**, with every input class in every state: the normal input, the invalid
   input, the timeout, the disconnect, the duplicate, the concurrent action from another
-  session and from another node. An unhandled cell is a defect.
+  session and from another node, and each dependency the state touches failing (the
+  database unreachable, a peer gone), stated for that state rather than once for all. An
+  unhandled cell is a defect.
 - **Fail directions.** For every dependency the feature calls, what happens when it fails, and
   in which direction. Access gates fail closed.
 - **Multi-node invariants.** Which state lives only in the database, which jobs may run twice and
@@ -60,8 +62,9 @@ them and in spec terms where the spec will hold them:
 - **Audit entries.** Every state-changing operator action, with the fields it records.
 - **Config-tool footprint.** Every sysop tunable: key, default, kind, and which of the setup
   and runtime configuration tools exposes it (both, or say why not).
-- **Derived negative tests.** One line each, mechanically from the brief's `If` scenarios and
-  from every permission check: what is forced to fail, what must be denied.
+- **Derived negative tests.** One line each, mechanically from the brief's `If` scenarios,
+  every permission check, every security decision, and the state machine's failure and
+  concurrency cells: what is forced to fail, what must be denied. Each names its source.
 - **Spec deltas.** For each affected document, ADDED, MODIFIED and REMOVED blocks in the
   corpus template's form, each block tagged `Serves: <feature IDs>`. Every sentence in the
   delta traces to a brief scenario, a security decision or a constitution rule; a sentence
@@ -119,8 +122,13 @@ and ask for the approval again; an approval covers the text the developer saw.
   is served by at least one section.
 - Commit on a branch and open a pull request titled `Design: <ID> <name>` whose description
   is the section list; `docs/spec/` is developer-owned and merges on review.
+- **The impact list.** Name every section of an existing specification this design changes,
+  every open plan task it overturns (issue, task, and why), and every open issue it makes
+  obsolete. Put the list in the design pull request's description and the design record, and
+  comment it on each affected issue; `re-plan` starts from it.
 - Record the session as `records/<ID>-design.md` in `HeliosBBS/HeliosDesign`, by pull
   request as the developer: the constraints, the clean-room comparison and the choice, each
   critic pass with its counts and verdict, every ruling the developer gave and who proposed
   it, and each section's approval. The design pull request links to it.
-- Say what comes next: `feature-plan` once the design is merged.
+- Say what comes next: `feature-plan` once the design is merged, and `re-plan` for each issue
+  the impact list names.

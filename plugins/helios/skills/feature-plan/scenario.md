@@ -12,8 +12,9 @@ The developer says: plan ADV-007.
 
 ## Expect
 
-- The gap table cites `internal/cluster` as partial and `internal/config` as exists, with the
-  file paths, before any task is written.
+- The gap table cites `internal/cluster` and `internal/config` with their file paths before any
+  task is written: `internal/config` as exists, and the join as partial or missing with the
+  reason (a `Node` is a caller slot, not a joining server).
 - Every task has Files, Test first, Acceptance, Serves and a tier.
 - Every Acceptance line names its document's file and section, and no task cites a line
   number or a test number.
@@ -24,5 +25,6 @@ The developer says: plan ADV-007.
 - The analyze table is printed with every row filled and no failed row.
 - The plan is written into the issue body under `### Plan` and the issue carries a priority,
   a kind and `unattended-loop` (no task is `session`).
-- At least one purely mechanical task (the config key's registration, say) is tagged `haiku`.
+- Every tier follows the skill's rule by the task's shape: `haiku` or `effort: low` only where the
+  work has one right answer, and a doubtful task is routed up, never down.
 - No source file is changed.

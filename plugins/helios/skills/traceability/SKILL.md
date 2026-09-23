@@ -19,8 +19,10 @@ developer's words and the engineering, so they are stable forever and never reus
 
 ## The check
 
-Run both directions and report; either list being non-empty is a defect to fix before
-proceeding:
+Run both directions and report; either list being non-empty is a defect the calling skill
+fixes before proceeding. The check itself edits nothing: a section naming a missing ID
+needs the right ID, which only the design that wrote it knows, so it is reported, never
+guessed:
 
 1. **Features nothing serves.** For each ID in `features/` (excluding `backlog.md`), grep
    `docs/spec/` for `Serves:.*<ID>`. No hit: the feature has no design yet (fine before
