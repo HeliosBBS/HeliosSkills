@@ -80,7 +80,10 @@ fixes the code or amends the spec through `feature-design`, never by a reviewer'
 
 - Commit atomically with the task's title, referencing the issue (`#<n>`, never `Closes` until
   the last task). Push.
-- Tick the task's box and comment: the commit, what the test proved, anything learned.
+- In the loop, stop here: the loop runs the review of section 4 itself, on the task's diff, and
+  ticks the box on a pass; findings come back as the notes of a fix round. A session's own
+  word that it reviewed decides nothing. In an interactive session, run section 4 yourself,
+  then tick the task's box and comment: the commit, what the test proved, anything learned.
 - Run `compound` for anything that would make the next task easier.
 - Stop. The next task is a new iteration with fresh context.
 
