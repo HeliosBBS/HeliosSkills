@@ -28,15 +28,19 @@ already decided**. The developer corrects all three before any question is asked
 left uncorrected are still assumptions; they are re-asked when they matter.
 
 **What is already decided** lists every value, default and rule the developer's words fix,
-from the request and from the backlog entry when there is one. Each gets one line: either why
+from the request and from the backlog entry when there is one; an inference of yours belongs
+under what I assumed, and a proposal of yours under neither. Each gets one line: either why
 it holds, or what it may have missed (an edge case, an attacker, a lesson from classic boards,
 a clash with another entry or brief). A default is never carried into the brief because the
 developer wrote it down; being written early is not being tested. Every "may have missed"
 becomes a question in step 3, asked one at a time like any other.
 
 If the feature holds a piece other features need much earlier than the rest (a mechanism
-every caller or tool uses, inside a user-facing feature), say so in the write-back and offer
-to split it: the early piece brainstormed now, the rest back to the backlog as its own entry.
+every caller or tool uses, inside a user-facing feature), name it in the write-back. The
+write-back still ends on its one question (are the lists right?); offering the split, the
+early piece brainstormed now and the rest back to the backlog as its own entry, is the first
+question after the developer's corrections.
+
 On a split, the piece brainstormed now gets its own write-back (all three lists) before any
 shaping question. The rest goes back in the developer's words untouched, with its new
 `Depends on:`; the challenges raised against it go in the brainstorm record, not into the entry.
@@ -97,7 +101,9 @@ defaults get applies to yours: nothing slips through because it was bundled.
 Present each section for approval before the next. The brief is in the developer's words; do
 not rewrite their reasons into yours. Anything that enters a section without having been
 asked or shown during shaping (a behaviour, a value, a limit) is marked as new in that
-section, so the developer's approval of it is a decision and not a rubber stamp. Sections, in this order:
+section, so the developer's approval of it is a decision and not a rubber stamp. The whole
+brief shown for the final approval is the sections exactly as approved; anything changed since
+is marked as changed. Sections, in this order:
 
 1. **ID and name.** The ID is stable forever: the repository's prefix and the next number
    (`ADV-` engine, `DK-` Door Kit, `PTL-` Portal, `SIP-`, `LT-` load tester, `DRS-` doors),
