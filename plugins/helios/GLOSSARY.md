@@ -55,6 +55,12 @@ file rather than redefining. Loaded with the constitution at the start of every 
 | spec | a derived document in `docs/spec/`: the architecture or one subsystem |
 | plan | the checklist in an issue that a session executes without judgment |
 | task, tier | one box in a plan, and the model it runs on: haiku, sonnet, opus, or session |
+| review round, round | one whole-codebase review of one repository at one pinned commit, run by the unattended loop one agent at a time and triaged by the developer |
+| question set | a repository's declaration of what a review of it asks: its review groups, finding classes and questions |
+| results repository | HeliosReviews, the private repository holding every round's records and the developer's decisions, from which the release gate is computed |
+| finding | one defect a review agent reports, with a class, a severity and its locations |
+| work-order tool | `work`, in HeliosTools: the estate's tool for reading and writing work items in the issue tracker |
+| sign-off command | the command the developer merges pull requests with, in the work-order tool |
 | sysop tunable | a setting the board's operator changes, with a key, a default and a kind |
 | Admin API | the board's one network interface for administration: every administration tool reaches the board through it on any server, never through the database |
 | allow list | the Admin API's list of entries (an address, an address range or a hostname), each naming the accounts or roles it admits, checked on every request before a password can be tried; empty admits only the server's own host, which is always admitted |
