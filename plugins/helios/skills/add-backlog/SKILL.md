@@ -12,14 +12,23 @@ here is designed.
 1. **Read the backlog and the briefs in `features/`.** If the idea is already an entry, part
    of one, or covered by a brief, say which and offer to amend that entry instead of adding a
    second.
-2. **Draft the entry** in the file's shape: a bold name, what it does and for whom in the
-   developer's words (tidy the grammar, never the meaning), what the developer has already
-   decided about it, and `Depends on:` the entries or briefs it needs directly (not what those already depend on). Place it under the
-   heading where it belongs. If it changes an existing entry's dependencies, say which.
-3. **Show the exact lines and where they go.** Ask only what the entry cannot be written
-   without, one question at a time; otherwise state the assumption in the draft.
-4. **On approval**, commit on a `backlog/<slug>` branch off `development`, authored as the
-   developer, and open a pull request against `development`. Give the number.
+2. **Check its size first.** If the prose is already a full feature (many decided requirements,
+   defaults, per-case behaviour), say so before drafting and offer `feature-brainstorm` instead;
+   draft the entry only if the developer still wants it in the backlog.
+3. **Draft the entry** in the file's shape: a bold name, what it does and for whom in the
+   developer's words (tidy the grammar, never the meaning; keep their name for it unless they
+   agree to another), what the developer has already decided about it, and `Depends on:` the
+   entries or briefs it needs directly (not what those already depend on). Place it under the
+   heading where it belongs.
+4. **Reply in this shape, every time,** with each part under its own heading and none left
+   out (write "None." when a part is empty):
+   - **The entry**: the exact lines, in a code block, and where they go.
+   - **Other entries this changes**: each existing entry whose `Depends on:` changes, and how.
+   - **Assumptions**: everything the draft decided that the developer did not say.
+   - **Where I'd push back**: what you would do differently and why, or "None."
+   - **Question**: at most one, only for what the entry cannot be written without; end the
+     reply with it, or with "Commit as drafted?".
+5. **On approval**, and never before it, commit on a `backlog/<slug>` branch off `development`,
+   authored as the developer, and open a pull request against `development`. Give the number.
 
-Never brainstorm here: no threat model, no scenarios. If the prose is already a full feature,
-say so and offer `feature-brainstorm` instead.
+Never brainstorm here: no threat model, no scenarios.
