@@ -1,6 +1,6 @@
 ---
 name: add-backlog
-description: Use when the developer says /add-backlog followed by prose, or asks to add an idea to the backlog. Turns the prose into a backlog entry in the developer's words, placed and checked against what is already there, and lands it by pull request. It records an idea; it does not shape it (that is feature-brainstorm).
+description: Use when the developer says /add-backlog followed by prose, asks to add an idea to the backlog, or asks to review the backlog. Turns the prose into a backlog entry in the developer's words, placed and checked against what is already there, checks the whole backlog's order and gaps, and lands it by pull request. It records an idea; it does not shape it (that is feature-brainstorm).
 ---
 
 # Add to the backlog
@@ -20,7 +20,25 @@ here is designed.
    agree to another), what the developer has already decided about it, and `Depends on:` the
    entries or briefs it needs directly (not what those already depend on). Place it under the
    heading where it belongs.
-4. **Reply in this shape, every time,** with each part under its own heading and none left
+4. **Check the whole backlog**, not only the new entry. The developer adds entries one at a
+   time and cannot hold the file's dependency graph in their head; this pass does:
+   - **Dangling**: every `Depends on:` names an entry, a brief, or an item under the heading
+     for things not yet described. A name that matches none, or a feature an entry's text
+     relies on (honours, sends, is owned by) that nothing describes, is a gap.
+   - **Order**: the file is in dependency order; an entry sitting before one it depends on,
+     under any heading, is out of place.
+   - **Split**: an entry holding a piece other entries need much earlier than the rest (a
+     mechanism every later caller or tool uses, inside a user-facing feature) is offered as
+     two entries: the early piece and the rest.
+   - **Secure default**: a listener or anything else reachable from the network that the
+     entry does not say is off by default is raised, since the constitution's default is
+     closed.
+   Findings the new entry causes or fixes go in the draft; the rest are reported under
+   **Where I'd push back**, one line each with the amendment you would make, and are drafted
+   only on the developer's word. Asked only to review the backlog, run this step alone and
+   reply with the findings; the amendments the developer accepts are then drafted in the
+   shape below.
+5. **Reply in this shape, every time,** with each part under its own heading and none left
    out (write "None." when a part is empty):
    - **The entry**: the exact lines, in a code block, and where they go.
    - **Other entries this changes**: each existing entry whose `Depends on:` changes, and how.
@@ -28,7 +46,7 @@ here is designed.
    - **Where I'd push back**: what you would do differently and why, or "None."
    - **Question**: at most one, only for what the entry cannot be written without; end the
      reply with it, or with "Commit as drafted?".
-5. **On approval**, and never before it, commit on a `backlog/<slug>` branch off `development`,
+6. **On approval**, and never before it, commit on a `backlog/<slug>` branch off `development`,
    authored as the developer, and open a pull request against `development`. Give the number.
 
 Never brainstorm here: no threat model, no scenarios.

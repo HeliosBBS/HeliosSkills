@@ -23,9 +23,20 @@ above it is never a reason to stop.
 
 ## 0. Write back before asking anything
 
-Restate what you heard in two lists: **what was said** and **what I assumed**. The developer
-corrects both before any question is asked. Assumptions left uncorrected are still assumptions;
-they are re-asked when they matter.
+Restate what you heard in three lists: **what was said**, **what I assumed**, and **what is
+already decided**. The developer corrects all three before any question is asked. Assumptions
+left uncorrected are still assumptions; they are re-asked when they matter.
+
+**What is already decided** lists every value, default and rule the developer's words fix,
+from the request and from the backlog entry when there is one. Each gets one line: either why
+it holds, or what it may have missed (an edge case, an attacker, a lesson from classic boards,
+a clash with another entry or brief). A default is never carried into the brief because the
+developer wrote it down; being written early is not being tested. Every "may have missed"
+becomes a question in step 3, asked one at a time like any other.
+
+If the feature holds a piece other features need much earlier than the rest (a mechanism
+every caller or tool uses, inside a user-facing feature), say so in the write-back and offer
+to split it: the early piece brainstormed now, the rest back to the backlog as its own entry.
 
 ## 1. Decompose a generic description
 

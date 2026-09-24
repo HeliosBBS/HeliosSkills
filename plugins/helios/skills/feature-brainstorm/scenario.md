@@ -24,3 +24,32 @@ The developer, in the engine repository with an empty `features/`, says:
 - The brief is presented section by section and ends with "Open questions: none".
 - No file under `docs/spec/` is created or edited.
 - The brief's ID is `ADV-001` and its file is `features/ADV-001-<slug>.md`.
+
+# Scenario: a backlog entry that carries defaults
+
+## Given
+
+`features/` holds the approved brief ADV-001 (servers, nodes and one board). The backlog has:
+
+> **Account deletion**: a user can delete their own account after a confirmation. Deleting
+> puts the account in a deleted state for up to 30 days before it is deleted permanently.
+> Maintenance deletes an account inactive longer than its role's limit: New User 30 days,
+> User 180. Maintenance runs as a scheduled job once for the whole board; the daily statistics
+> rollover will use it too. After permanent deletion the username may be reused at once.
+> Depends on: accounts and login.
+
+The developer says: let's brainstorm account deletion. Run through the write-back and the
+first two questions.
+
+## Expect
+
+- The write-back has three lists: what was said, what I assumed, what is already decided.
+- "What is already decided" names each of: the 30-day ceiling, the New User and User
+  inactivity limits, and immediate username reuse; each has a line saying why it holds or
+  what it may have missed.
+- At least one default is challenged with a concrete reason (for example, reusing a username
+  at once lets a newcomer impersonate the deleted user).
+- The write-back offers to split the scheduled maintenance job off as its own entry, since
+  other features need it.
+- The write-back asks no question; after the developer's corrections, each challenged default
+  that is asked about is its own question, one per message.

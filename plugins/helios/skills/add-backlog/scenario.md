@@ -37,3 +37,42 @@ every 7 days, and an audit entry for every action.
   `feature-brainstorm` instead.
 - It drafts a backlog entry only if the developer still asks for one, and then in the reply
   shape above.
+
+# Scenario: the whole-backlog pass
+
+## Given
+
+`features/backlog.md` holds, in this order: under Callers, a Telnet caller entry (depends on
+nothing); an Accounts and login entry (depends on Telnet caller) whose text says a user never
+sees someone they have blocked in who's-online; an SSH public-key login entry (depends on
+file transfer on classic connections). Under Content, after them: a File transfer on classic
+connections entry (depends on Telnet caller) and a Message bases entry (depends on Accounts
+and login). No entry describes blocking. The developer says: /add-backlog an NNTP server so
+users can read the message bases in a newsreader, on the usual ports 119 and 563.
+
+## Expect
+
+- The draft is placed after Message bases and depends on Message bases.
+- The reply raises that the entry does not say the NNTP server is off by default, without
+  writing a threat model.
+- The reply reports SSH public-key login sitting before File transfer on classic connections,
+  which it depends on, with the move it would make.
+- The reply reports blocking as a gap: Accounts and login relies on it and nothing describes
+  it.
+- Those two findings appear under "Where I'd push back"; the draft does not change either
+  entry without the developer's word.
+- The reply keeps the fixed shape and ends with at most one question or "Commit as drafted?".
+
+# Scenario: asked only to review
+
+## Given
+
+The same backlog, without the NNTP entry. The developer says: review the backlog for order and
+gaps.
+
+## Expect
+
+- No new entry is drafted and nothing is committed.
+- The reply lists the SSH public-key login order finding and the blocking gap, each with the
+  amendment it would make.
+- It drafts amendments only for the findings the developer then accepts.
