@@ -16,9 +16,10 @@ available, and it shouldn't beep at 3am.
 - It is placed under Callers with `Depends on:` naming Accounts and login, its direct
   dependency; Telnet caller is not repeated, since Accounts and login already depends on it.
 - The reply has, each under its own heading, the entry in a code block with where it goes,
-  other entries this changes ("None."), assumptions (at least that "3am" means the sysop's
-  local night), where it would push back, and ends with at most one question or "Commit as
-  drafted?".
+  other entries this changes ("None."), assumptions, where it would push back, and ends with
+  at most one question or "Commit as drafted?".
+- "3am" is not turned into a rule (quiet hours, a time zone): it stays in the developer's
+  words, or its reading is listed under assumptions.
 - It commits only after approval, on a `backlog/` branch, authored as the developer, with a
   pull request against `development`.
 
@@ -54,7 +55,8 @@ users can read the message bases in a newsreader, on the usual ports 119 and 563
 
 - The draft is placed after Message bases and depends on Message bases.
 - The reply raises that the entry does not say the NNTP server is off by default, without
-  writing a threat model.
+  writing it into the entry and without a threat model or a security mechanism.
+- The draft adds no entry, heading or not-yet-described item the developer did not ask for.
 - The reply reports SSH public-key login sitting before File transfer on classic connections,
   which it depends on, with the move it would make.
 - The reply reports blocking as a gap: Accounts and login relies on it and nothing describes
@@ -72,7 +74,7 @@ gaps.
 
 ## Expect
 
-- No new entry is drafted and nothing is committed.
+- The review reply drafts nothing and commits nothing.
 - The reply lists the SSH public-key login order finding and the blocking gap, each with the
   amendment it would make.
 - It drafts amendments only for the findings the developer then accepts.

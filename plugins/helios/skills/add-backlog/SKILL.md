@@ -14,7 +14,8 @@ here is designed.
    second.
 2. **Check its size first.** If the prose is already a full feature (many decided requirements,
    defaults, per-case behaviour), say so before drafting and offer `feature-brainstorm` instead;
-   draft the entry only if the developer still wants it in the backlog.
+   draft the entry only if the developer still wants it in the backlog. That offer is the
+   whole reply: no reply shape and no backlog pass around it.
 3. **Draft the entry** in the file's shape: a bold name, what it does and for whom in the
    developer's words (tidy the grammar, never the meaning; keep their name for it unless they
    agree to another), what the developer has already decided about it, and `Depends on:` the
@@ -24,20 +25,28 @@ here is designed.
    time and cannot hold the file's dependency graph in their head; this pass does:
    - **Dangling**: every `Depends on:` names an entry, a brief, or an item under the heading
      for things not yet described. A name that matches none, or a feature an entry's text
-     relies on (honours, sends, is owned by) that nothing describes, is a gap.
+     relies on (honours, sends, is owned by) that nothing describes, is a gap. A part of the
+     entry's own feature is not a gap: the gap is something another feature would own.
    - **Order**: the file is in dependency order; an entry sitting before one it depends on,
      under any heading, is out of place.
    - **Split**: an entry holding a piece other entries need much earlier than the rest (a
      mechanism every later caller or tool uses, inside a user-facing feature) is offered as
      two entries: the early piece and the rest.
-   - **Secure default**: a listener or anything else reachable from the network that the
-     entry does not say is off by default is raised, since the constitution's default is
-     closed.
-   Findings the new entry causes or fixes go in the draft; the rest are reported under
-   **Where I'd push back**, one line each with the amendment you would make, and are drafted
-   only on the developer's word. Asked only to review the backlog, run this step alone and
-   reply with the findings; the amendments the developer accepts are then drafted in the
-   shape below.
+   - **Secure default**: a listener or anything else reachable from the network whose entry
+     does not say whether it is on or off by default (a default port is not an answer) is
+     raised, with off as the recommendation, since the constitution's default is closed. Only
+     the on-or-off question; how to secure it is the brainstorm's.
+
+   The pass reports; it does not fix. The draft holds only the developer's entry and the
+   `Depends on:` changes it causes: a gap is named, never filled with an invented entry or
+   heading, and a secure default is raised, never written into the developer's words. Each
+   finding is one line with the amendment you would make, under **Where I'd push back**, the
+   five that matter most first and a count of the rest; say nothing about a check that found
+   nothing, offer no design options, and do not raise again a finding the developer has
+   passed over in this conversation. Where two amendments would fix one finding, name the
+   one that leaves every entry under its natural heading. Asked only to review the backlog,
+   run this step alone and reply with every finding; the amendments the developer accepts
+   are then drafted in the shape below.
 5. **Reply in this shape, every time,** with each part under its own heading and none left
    out (write "None." when a part is empty):
    - **The entry**: the exact lines, in a code block, and where they go.

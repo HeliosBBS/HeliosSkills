@@ -37,6 +37,9 @@ becomes a question in step 3, asked one at a time like any other.
 If the feature holds a piece other features need much earlier than the rest (a mechanism
 every caller or tool uses, inside a user-facing feature), say so in the write-back and offer
 to split it: the early piece brainstormed now, the rest back to the backlog as its own entry.
+On a split, the piece brainstormed now gets its own write-back (all three lists) before any
+shaping question. The rest goes back in the developer's words untouched, with its new
+`Depends on:`; the challenges raised against it go in the brainstorm record, not into the entry.
 
 ## 1. Decompose a generic description
 
@@ -84,10 +87,17 @@ recommendation, and ask which fits. Keep offering until the developer picks or p
 their proposal often fits the need better than the offered ones did (the node-join pairing
 code, a code shown on a separate channel like a smart-TV app pairing, was such a proposal).
 
+**One question decides one thing.** A recommendation that also carries values, limits or a
+fail-closed rule lists each of them in that message, so a "yes" visibly covers them; where
+there are several separate decisions, ask them in turn. The same test the developer's
+defaults get applies to yours: nothing slips through because it was bundled.
+
 ## 4. Draft the brief, section by section
 
 Present each section for approval before the next. The brief is in the developer's words; do
-not rewrite their reasons into yours. Sections, in this order:
+not rewrite their reasons into yours. Anything that enters a section without having been
+asked or shown during shaping (a behaviour, a value, a limit) is marked as new in that
+section, so the developer's approval of it is a decision and not a rubber stamp. Sections, in this order:
 
 1. **ID and name.** The ID is stable forever: the repository's prefix and the next number
    (`ADV-` engine, `DK-` Door Kit, `PTL-` Portal, `SIP-`, `LT-` load tester, `DRS-` doors),

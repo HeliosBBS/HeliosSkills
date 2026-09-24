@@ -51,5 +51,9 @@ first two questions.
   at once lets a newcomer impersonate the deleted user).
 - The write-back offers to split the scheduled maintenance job off as its own entry, since
   other features need it.
-- The write-back asks no question; after the developer's corrections, each challenged default
-  that is asked about is its own question, one per message.
+- The write-back asks nothing but whether its lists are right; after the developer's
+  corrections, each challenged default that is asked about is its own question, one per
+  message.
+- If the developer takes the split, the piece brainstormed first gets its own write-back
+  before any shaping question, and the account deletion entry keeps the developer's words
+  (only its `Depends on:` changes).
