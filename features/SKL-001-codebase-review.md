@@ -25,8 +25,10 @@ rules came from an earlier version of this scanner.
   a round is still small and cheap.
 - When a round starts, the system shall fix the commit it reviews, and review that commit
   throughout, whatever lands on the branch afterwards.
-- If a round is already open for a repository, then the system shall refuse to open a second
-  one and name the open round.
+- If the developer opens a round while another round of the repository is started, then the
+  system shall refuse it and name the started round.
+- When the system opens a round while another round of the repository is started, the new
+  round shall wait, and start once the started round closes.
 
 ### Coverage
 
@@ -111,16 +113,26 @@ rules came from an earlier version of this scanner.
 - When triage runs, the session shall present findings in chunks, worst first (must-fix,
   should-fix, backlog, architecture rewrites, rule proposals), and take the developer's
   decision on each: fix, accept with a reason, or reject as wrong.
-- When the developer says fix, the session shall open an issue; for a security finding the
+- While triage runs, the triage session shall hold no shell, no network and no credential; the
+  developer shall record every decision with the triage command in their own terminal, which
+  signs it as the developer.
+- When the developer says fix, the triage command shall open an issue; for a security finding the
   issue describes the work without the exploit path and cites the code-scanning alert; a
   must-fix finding in a release round is attached to that release's milestone.
-- When the developer accepts a code-scanning finding, the session shall name the alert for the
-  developer to dismiss in GitHub with the reason; when they accept any other finding, the
-  session shall write the ledger entry as the developer.
-- When the developer rejects a finding as wrong, the session shall record it as a reviewer
+- When the developer accepts a code-scanning finding, the triage command shall name the alert
+  for the developer to dismiss in GitHub with the reason; when they accept any other finding,
+  the triage command shall write the ledger entry as the developer.
+- When the developer rejects a finding as wrong, the triage command shall record it as a reviewer
   false positive in the round's calibration notes.
-- When the developer approves a rule proposal, the session shall open a pull request that adds
-  the rule where it belongs, and the rule joins the known-bug-class sweep.
+- Before the developer decides on a rule proposal, the triage command shall show the rule
+  catching its instances, running it in a disposable isolated environment with no credential
+  and no network; a rule that is written policy is shown with each instance quoted against its
+  text instead, needs no run, and can be approved.
+- When the developer approves a rule proposal for a security class, or one with a security
+  finding among its instances, the triage command shall open a work item for it, blocked on its
+  instances' fixes, whose pull request opens only once they close; for any other proposal, the
+  pull request opens at once. The pull request adds the
+  rule where it belongs, and the rule joins the known-bug-class sweep.
 
 ### The release gate
 
@@ -219,8 +231,9 @@ Architecture and documents:
 3. **The pipeline silencing itself.** *Attacker:* a misbehaving agent, or the loop's App.
    *Abuse:* suppressing findings by dismissing alerts or writing ledger entries. *Decision:*
    only plain code, never a model session, holds the credential that uploads, and no step ever
-   dismisses an alert. The ledger counts only entries committed by the developer; any other
-   entry is ignored and reported. *Why:* anything that can suppress its own findings makes the
+   dismisses an alert. The ledger counts only entries signed with the developer's
+   review-signing key, which needs the developer present for every signature; any other entry
+   is ignored and reported. *Why:* anything that can suppress its own findings makes the
    review worthless. *Fails closed:* an entry whose author cannot be verified is ignored, so
    the finding comes back.
 4. **The App's new permission.** *Attacker:* anything that obtains the loop's token. *Abuse:*
@@ -233,15 +246,15 @@ Architecture and documents:
 5. **Bypassing the release gate.** *Attacker:* a hurried merge, the developer's own or
    automation's. *Abuse:* releasing with a must-fix finding nobody decided on. *Decision:* the
    gate is a check on the release pull request that stays red while a must-fix finding is
-   neither fixed nor accepted. `gh signoff` merges with `--admin`, which skips required
-   checks, so a check alone would not hold. The sign-off command therefore refuses a release
-   merge while the gate is red. Overriding takes an explicit flag, and the override is
+   neither fixed nor accepted, required on `main` with no bypass for anyone, so every merge
+   path, the web page included, meets it; `gh signoff` merges without `--admin`. Overriding
+   takes an explicit flag and a signed record, which the check honours, and the override is
    recorded in the release notes. *Why:* a gate the normal merge path walks straight past is
    not a gate. *Fails closed:* if the round's state cannot be read, the gate is red.
 6. **Starting rounds to burn the plan.** *Attacker:* anyone who can open an issue on a public
    repository. *Abuse:* opening review issues so the loop spends a week and a half of the
    plan's usage. *Decision:* the loop runs a round only from an issue the developer or the
-   system opened, never one opened by anyone else, and a repository has at most one open
+   system opened, never one opened by anyone else, and a repository has at most one started
    round. *Why:* a round is the most expensive thing the loop does. *Fails closed:* an issue
    whose author cannot be confirmed is not run.
 7. **Dependency failures.** *Decision, each failing to the answer that loses nothing:*
@@ -262,8 +275,8 @@ Architecture and documents:
 
 | Limit | Kind | Value |
 |---|---|---|
-| Review agents running at once | fixed policy backstop | 1 |
-| Open rounds per repository | fixed policy backstop | 1 |
+| Review agents running at once, across the estate | fixed policy backstop | 1 |
+| Started rounds per repository | fixed policy backstop | 1 |
 | Refuters per critical finding | fixed policy backstop | 3, deciding by majority |
 | Refuters per high finding | fixed policy backstop | 1 |
 | Output validation failures before stepping up a tier | fixed policy backstop | 2, then one tier up, then the developer |
@@ -301,16 +314,31 @@ confident false positives, and depth comes from the refutation stage instead.
 
 Repositories that change:
 
-- **HeliosSkills** (owner): the review skill, synthesis, triage, rule proposals and SARIF
-  output; the `features/` setup and the contracts below.
-- **HeliosAdvance**: the loop gets a path for review issues, one agent per iteration; its tag
-  parser learns `xhigh`; a scoped upload token; the check on who opened the issue. The engine
-  also gets its own set of review questions.
-- **HeliosTools**: `work` recognises review issues. The sign-off command moves in here, so the
-  release-gate check travels with it instead of living in one machine's `gh` alias.
-- **HeliosBBS/.github**: the `kind:review` label; a workflow that opens a round when a release
-  branch is cut; one that makes a milestone's round ready when its other issues close; the
-  gate check on release pull requests.
+- **HeliosSkills** (owner): the review's specifications and the three contracts; the triage
+  session's instructions; a session hook refusing commands that enter the loop machine; the
+  `features/` setup.
+- **HeliosAdvance**: the loop gets a review mode that runs the round runner, one agent per
+  iteration; build sessions get tokens scoped to their own repository without the
+  security-events permission; a fix issue can name the branch it is built from. The engine also
+  gets its own set of review questions.
+- **HeliosTools**: the round runner, and `work` learns to open, select and triage rounds and to
+  compute the release gate, which travels with the sign-off command now moved in here instead
+  of living in one machine's `gh` alias.
+- **HeliosBBS/.github**: the `kind:review` label; an estate scheduler job that opens a round for
+  each new release branch; the gate check on release pull requests, as one reusable definition
+  each reviewed repository calls; the release step that adds the override line.
+- **The loop's machine**: the loop moves into a virtual machine of its own on the developer's
+  computer, which reaches none of the developer's files, programs or container runtime, started
+  only while the computer is idle, or by the triage command to run a rule demonstration with no
+  loop running, and shut down after. Its users, none holding the developer's
+  signing key, key agent or logins: a runner for plain code, which alone holds the App's private
+  key and the round data; a build user with its own rootless container runtime; a review user
+  that can read only its prepared input; and a sandbox user for isolated containers.
+- **The developer**: a review-signing key that needs a touch or passphrase for every signature,
+  used only for review records and question-set changes.
+- **Every repository with a release gate**: `main`'s rules split in two, one set letting only the
+  developer update it, one requiring every check, the gate among them, with no bypass for
+  anyone; the one-approval rule on `main` is dropped.
 - **HeliosReviews** (new, private): every round's results, the ledger and calibration notes.
 - **The organisation's settings**: the developer grants Phaethusa the security-events
   permission in the browser.
