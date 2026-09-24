@@ -9,7 +9,7 @@
       "name": "helios",
       "source": "./plugins/helios",
       "description": "Feature-first development for the Helios repositories: brainstorm, design, plan, build, compound, and the hooks that enforce the mechanical rules.",
-      "version": "0.1.9"
+      "version": "0.1.10"
     }
   ]
 }

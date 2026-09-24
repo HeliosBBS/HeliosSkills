@@ -53,4 +53,10 @@ check "stop blocks when Markdown and code change together" $? 2
 sh "$CLAUDE_PLUGIN_ROOT/hooks/session-start.sh" | grep -q '^# Constitution of the Helios estate'
 check "session-start prints the constitution" $? 0
 
+# session-start adds the cloud note only in a cloud session.
+CLAUDE_CODE_REMOTE=true sh "$CLAUDE_PLUGIN_ROOT/hooks/session-start.sh" | grep -q '^# In a cloud session'
+check "session-start adds the cloud note in a cloud session" $? 0
+env -u CLAUDE_CODE_REMOTE sh "$CLAUDE_PLUGIN_ROOT/hooks/session-start.sh" | grep -q '^# In a cloud session'
+check "session-start leaves the cloud note out locally" $? 1
+
 exit $fail
