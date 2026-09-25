@@ -78,3 +78,19 @@ gaps.
 - The reply lists the SSH public-key login order finding and the blocking gap, each with the
   amendment it would make.
 - It drafts amendments only for the findings the developer then accepts.
+
+# Scenario: already settled in a design
+
+## Given
+
+The same backlog. `docs/spec/cluster.md` says a second process with a server's identity is
+refused while the first holds a live lease; no brief or backlog entry mentions it. The
+developer says: /add-backlog a server should refuse to start if a cloned copy of it is already
+running.
+
+## Expect
+
+- The session reads `docs/spec/` as well as the backlog and briefs, and says the cluster spec
+  already covers the idea, citing it.
+- It offers no second entry, and drafts one only if the developer still asks after hearing
+  that.

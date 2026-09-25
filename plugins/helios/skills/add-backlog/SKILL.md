@@ -9,9 +9,11 @@ The backlog (`features/backlog.md` in the repository that owns the behaviour) is
 features mentioned and not yet brainstormed. An entry keeps the developer's words; nothing
 here is designed.
 
-1. **Read the backlog and the briefs in `features/`.** If the idea is already an entry, part
-   of one, or covered by a brief, say which and offer to amend that entry instead of adding a
-   second.
+1. **Read the backlog, the briefs in `features/` and the specs in `docs/spec/`,** after pulling
+   `development`: backlog pull requests merge while a session works, and a design can settle
+   what no brief says. A sibling repository's backlog is read from its `development` branch,
+   never its default. If the idea is already an entry, part of one, or covered by a brief or a
+   spec, say which and offer to amend that entry instead of adding a second.
 2. **Check its size first.** If the prose is already a full feature (many decided requirements,
    defaults, per-case behaviour), say so before drafting and offer `feature-brainstorm` instead;
    draft the entry only if the developer still wants it in the backlog. That offer is the
