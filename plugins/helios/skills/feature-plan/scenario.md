@@ -5,8 +5,9 @@
 `docs/spec/cluster.md` now contains the merged ADV-007 node-join design, including a
 `join_attempt` entity, a lockout counter per source with invalidation on success, a
 `cluster.join.lockout_period` sysop tunable, and six derived negative tests. The code has a
-`internal/cluster` package with a `Node` type and no join logic, and a `internal/config`
-package that already exposes settings to the text-mode configuration tool.
+`internal/cluster` package with a `Node` type, which is a caller slot on a server (the
+glossary's node), not a server, and no join logic; and a `internal/config` package that
+already exposes settings to the text-mode configuration tool.
 
 The developer says: plan ADV-007.
 
