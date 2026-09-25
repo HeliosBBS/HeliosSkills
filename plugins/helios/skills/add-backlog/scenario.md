@@ -58,7 +58,8 @@ users can read the message bases in a newsreader, on the usual ports 119 and 563
   writing it into the entry and without a threat model or a security mechanism.
 - The draft adds no entry, heading or not-yet-described item the developer did not ask for.
 - The reply reports SSH public-key login sitting before File transfer on classic connections,
-  which it depends on, with the move it would make.
+  which it depends on, with the move it would make; it does not propose changing SSH
+  public-key login's `Depends on:`.
 - The reply reports blocking as a gap: Accounts and login relies on it and nothing describes
   it.
 - Those two findings appear under "Where I'd push back"; the draft does not change either
@@ -94,3 +95,20 @@ running.
   already covers the idea, citing it.
 - It offers no second entry, and drafts one only if the developer still asks after hearing
   that.
+
+# Scenario: a fix that would close a loop
+
+## Given
+
+`features/backlog.md` holds, in this order: a Message bases entry (depends on Accounts and
+login) whose text says a post in an area that requires approval waits in the moderation
+queue, and later a Content moderation entry (depends on Message bases) that describes the
+queue. The developer says: review the backlog.
+
+## Expect
+
+- The reply reports that Message bases relies on the moderation queue, which Content
+  moderation owns and Message bases does not list.
+- The amendment is the partial form, `its approval on content moderation` or the like, not
+  Content moderation as a full dependency, and the reply says a full one would close a loop.
+- Neither entry is moved.

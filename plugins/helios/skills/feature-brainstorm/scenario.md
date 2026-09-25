@@ -49,8 +49,9 @@ first two questions.
   what it may have missed.
 - At least one default is challenged with a concrete reason (for example, reusing a username
   at once lets a newcomer impersonate the deleted user).
-- The write-back offers to split the scheduled maintenance job off as its own entry, since
-  other features need it.
+- The write-back names the scheduled maintenance job as a piece other features need earlier;
+  splitting it off as its own entry is offered as the first question after the developer's
+  corrections.
 - The write-back asks nothing but whether its lists are right; after the developer's
   corrections, each challenged default that is asked about is its own question, one per
   message.

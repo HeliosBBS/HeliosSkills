@@ -52,7 +52,9 @@ Rules:
   one issue for the graphical tool: blocked on this plan's PR, session-tier (the developer
   writes the forms), planned when that PR merges.
 - The last task is verification through the real surface (a real Telnet or SSH session, a
-  real HTTP call) against the brief's scenarios; a feature is not done without it.
+  real HTTP call) against the brief's scenarios; a feature is not done without it. Its Test
+  first line names each brief scenario it drives and what that must show, which fails on a
+  board without the feature.
 - Order by dependency; a task never depends on a later one.
 - **Tier** is the model the task needs, by shape, not by where its files live: `haiku` for
   purely mechanical work with one right answer (a rename, a generated file, a fixture, a doc

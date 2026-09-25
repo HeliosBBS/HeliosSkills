@@ -30,7 +30,10 @@ here is designed.
      relies on (honours, sends, is owned by) that nothing describes, is a gap. A part of the
      entry's own feature is not a gap: the gap is something another feature would own.
    - **Order**: the file is in dependency order; an entry sitting before one it depends on,
-     under any heading, is out of place.
+     under any heading, is out of place. The amendment moves one of the two entries; an
+     existing `Depends on:` is the developer's fact and is never rewritten to make the order
+     come out. When no move keeps every entry under its natural heading, say which heading
+     gives and why.
    - **Split**: an entry holding a piece other entries need much earlier than the rest (a
      mechanism every later caller or tool uses, inside a user-facing feature) is offered as
      two entries: the early piece and the rest.
@@ -46,7 +49,10 @@ here is designed.
    five that matter most first and a count of the rest; say nothing about a check that found
    nothing, offer no design options, and do not raise again a finding the developer has
    passed over in this conversation. Where two amendments would fix one finding, name the
-   one that leaves every entry under its natural heading. Asked only to review the backlog,
+   one that leaves every entry under its natural heading. An amendment that closes a
+   dependency loop is no fix: where an entry relies on only one part of a later entry, name
+   that part in the backlog's partial form, `Depends on: <direct needs>; its <part> on
+   <entry>`. Asked only to review the backlog,
    run this step alone and reply with every finding; the amendments the developer accepts
    are then drafted in the shape below.
 5. **Reply in this shape, every time,** with each part under its own heading and none left

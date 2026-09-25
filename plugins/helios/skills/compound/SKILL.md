@@ -24,4 +24,5 @@ Rules:
 - Never write the same learning in two places; the wiki cites `CLAUDE.md`, not the reverse.
 - The wiki is unreviewed and disposable; `CLAUDE.md`, the constitution and the skills are
   reviewed. Put a learning in the reviewed place only when it is a rule, not an observation.
-- Say what you wrote and where in the issue's tick comment, so the write-up carries it.
+- Name in the issue's tick comment where the learning went (the page or file, and its line
+  or section), without restating it, so the write-up links to the one copy.
