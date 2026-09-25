@@ -20,7 +20,7 @@ The developer says: design ADV-007.
   second concurrent join attempt, and the database being unreachable.
 - The fail direction for an unreachable database is refusal, matching the brief.
 - Every derived negative test names its source: an `If` scenario, a permission check, a
-  security decision, a failure or concurrency cell of the state machine, or a constitution
+  security decision, a state-machine cell other than the normal input, or a constitution
   invariant on the constraint list, cited by its ID. None cites a `When` scenario.
 - The spec delta is ADDED/MODIFIED/REMOVED blocks tagged `Serves: ADV-007`, not a rewrite of
   the cluster spec.
