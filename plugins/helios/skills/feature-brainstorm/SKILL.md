@@ -51,6 +51,8 @@ If the request is generic, do not go deep on any part of it yet:
 
 1. Propose candidate features: name, one-line purpose, the repositories each touches (see the
    estate table in the constitution), and which existing features or contracts each depends on.
+   Include what the description needs before any named part works (signing in, limits per
+   source), not only what it names, and mark those as unnamed.
 2. Let the developer add, remove, merge or rename. Repeat until the list is theirs.
 3. Order by dependency and propose which to brainstorm first.
 4. Append every candidate not brainstormed now to `features/backlog.md` (one line each: name,

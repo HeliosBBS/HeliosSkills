@@ -33,7 +33,8 @@ directions, multi-node invariants. It must not read `docs/spec/`.
 
 Then read the existing corpus (`docs/spec/architecture.md`, the subsystem specs the brief's
 repositories and contracts point at, and `contracts.md` from this plugin) and produce your own
-design. Compare the two: where they differ, say which is better and why. A clean-room design
+design. Compare the two: where they differ, record which is better and why, for the design
+record; the developer sees the comparison in step 5, after the critic. A clean-room design
 that is simpler and meets every constraint wins over one that fits the existing shape.
 
 ## 3. Derive the delta

@@ -22,8 +22,11 @@ For each `skills/*/scenario.md`, in a fresh subagent:
    scratch directory. Tell it to act as the skill would, in a transcript, without asking the
    real developer anything: where the scenario needs a developer answer, it answers in the
    developer's voice with the simplest plausible reply and marks it so.
-2. Give a second, independent subagent the transcript and the scenario's **Expect** list and
-   have it judge each line pass or fail with the evidence quoted.
+2. Give a second, independent subagent the transcript, the scenario's **Expect** list, the
+   skill's `SKILL.md` and any file an Expect line names, and have it judge each line pass or
+   fail with the evidence quoted. An actor that cannot dispatch a subagent records the
+   dispatch prompt; a line about a reviewer or critic is then judged on that prompt, and the
+   report says so.
 3. A skill passes only when every Expect line passes.
 
 Report a table: skill, pass or fail, and for a failure the first Expect line that failed with

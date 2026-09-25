@@ -7,7 +7,8 @@ description: The one template every architecture and subsystem spec follows, and
 
 Every document under `docs/spec/` has these sections, in this order, with these headings.
 A section that does not apply says `None.` rather than being omitted, so a reader knows it
-was considered. Every `##` section is followed by its `Serves:` line.
+was considered. Every `##` section except Revision history is followed by its `Serves:`
+line.
 
 ```
 # <Subsystem name>
