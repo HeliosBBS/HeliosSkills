@@ -21,7 +21,8 @@ never a reason to stop.
 
 For every contract, mechanism, entity, setting and test the design names, search the code
 (`Grep` for the contract name, the type, the config key, the migration) and classify it:
-**exists** (cite the file), **partial** (what is there and what is missing), or **missing**.
+**exists** (cite the file), **partial** (cite the files of what is there, and say what is
+missing), or **missing**.
 A task for something that exists is waste; a task that assumes something exists when it does
 not is a session that will guess. Record the table at the top of the plan.
 
@@ -47,6 +48,8 @@ Rules:
   a changed file, so a task that names none is never flagged.
 - Small: if a task needs more than one test to describe, split it.
 - Tests first, always; the test names the behaviour before the code exists.
+- A documentation change rides in the task whose code it documents; no task is
+  documentation alone, so every task has a test.
 - Every permission check gets its negative-path task. Every audit entry gets its task.
 - Every sysop tunable gets its text-mode tool task in this plan, and the plan's issue links
   one issue for the graphical tool: blocked on this plan's PR, session-tier (the developer
@@ -57,8 +60,8 @@ Rules:
   board without the feature.
 - Order by dependency; a task never depends on a later one.
 - **Tier** is the model the task needs, by shape, not by where its files live: `haiku` for
-  purely mechanical work with one right answer (a rename, a generated file, a fixture, a doc
-  line); `sonnet` for fully specified implementation; `opus` for a task with reasoning left in
+  purely mechanical work with one right answer (a rename, a generated file, a fixture);
+  `sonnet` for fully specified implementation; `opus` for a task with reasoning left in
   it (it should not be, but say so); `session` for anything that changes the architecture or a
   contract another repository consumes, meaning an interactive session with the developer.
   The loop runs the task on that tier and raises it on the routing triggers; it never lowers it.

@@ -14,12 +14,14 @@ The developer says: plan ADV-007.
 ## Expect
 
 - The gap table cites `internal/cluster` and `internal/config` with their file paths before any
-  task is written: `internal/config` as exists, and the join as partial or missing with the
+  task is written: the settings mechanism in `internal/config` as exists (the new key itself
+  may be a partial row, citing the same files), and the join as partial or missing with the
   reason (a `Node` is a caller slot, not a joining server).
 - Every task has Files, Test first, Acceptance, Serves and a tier.
 - Every Acceptance line names its document's file and section, and no task cites a line
   number or a test number.
-- No task's test-first line is empty, and no task contains "if needed" or a choice.
+- No task's test-first line is empty, no task is documentation alone, and no task contains
+  "if needed" or a choice.
 - The lockout tunable has a task for the text-mode tool, and the issue links a blocked,
   session-tier issue for the graphical one.
 - The last task is verification through a real client session.

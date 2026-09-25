@@ -64,8 +64,8 @@ them and in spec terms where the spec will hold them:
 - **Config-tool footprint.** Every sysop tunable: key, default, kind, and which of the setup
   and runtime configuration tools exposes it (both, or say why not).
 - **Derived negative tests.** One line each, mechanically from the brief's `If` scenarios,
-  every permission check, every security decision, the state machine's failure and
-  concurrency cells, and the constitution invariants on the constraint list: what is forced
+  every permission check, every security decision, every state-machine cell other than the
+  normal input, and the constitution invariants on the constraint list: what is forced
   to fail, what must be denied. Each names its source, one of those five, by its ID; a test
   with none of them is dropped. A `When` scenario is the normal path and belongs to the
   plan's positive tests, not here.
