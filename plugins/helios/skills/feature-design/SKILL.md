@@ -64,8 +64,11 @@ them and in spec terms where the spec will hold them:
 - **Config-tool footprint.** Every sysop tunable: key, default, kind, and which of the setup
   and runtime configuration tools exposes it (both, or say why not).
 - **Derived negative tests.** One line each, mechanically from the brief's `If` scenarios,
-  every permission check, every security decision, and the state machine's failure and
-  concurrency cells: what is forced to fail, what must be denied. Each names its source.
+  every permission check, every security decision, the state machine's failure and
+  concurrency cells, and the constitution invariants on the constraint list: what is forced
+  to fail, what must be denied. Each names its source, one of those five, by its ID; a test
+  with none of them is dropped. A `When` scenario is the normal path and belongs to the
+  plan's positive tests, not here.
 - **Spec deltas.** For each affected document, ADDED, MODIFIED and REMOVED blocks in the
   corpus template's form, each block tagged `Serves: <feature IDs>`. Every sentence in the
   delta traces to a brief scenario, a security decision or a constitution rule; a sentence
@@ -80,7 +83,8 @@ model, asking three things and nothing else:
    unmodelled, which gate fails open, which mechanism is now implemented twice?
 2. **Buildability.** Could a Sonnet 5 session at high effort build each part from this delta
    plus the corpus without asking a question? Name every place it would have to guess.
-3. **Spec rules.** Every rule in the constitution's section 5, checked line by line.
+3. **Spec rules.** Every rule in the constitution's section 5, checked line by line, and every
+   derived negative test naming one of its five allowed sources.
 
 The critic writes a report, not a conversation: each finding quotes the exact text that is
 wrong or contradictory (document and section), states in one or two sentences the fix it
