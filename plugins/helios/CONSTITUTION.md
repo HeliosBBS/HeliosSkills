@@ -120,7 +120,14 @@ anyone. Their expression is. So:
 - An implementation that comes out structurally close to something you read is raised, not
   shipped.
 
-## 7. How this file is used
+## 7. Accessible by design
+
+Every surface a person uses is accessible: the web to WCAG 2.2 level AA, and terminals, text
+interfaces and graphical tools to the same success criteria as WCAG2ICT applies them to
+software that is not web. Every feature brief says how its surfaces meet this; a criterion a
+surface cannot meet is named in the brief with the reason.
+
+## 8. How this file is used
 
 Loaded first, unchanged, by every skill, every prompt and every loop iteration. A change to it
 is a pull request the developer approves, and nothing else edits it.
