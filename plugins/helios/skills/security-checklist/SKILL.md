@@ -23,10 +23,17 @@ sysop's console, a configuration tool):
 4. What must be logged for the sysop to see it happened, and what must never be logged (a
    password, a session token, a pairing code)?
 5. What limit bounds it, and of which kind (fixed backstop, calibration target, sysop tunable)?
+6. Which permission gates each action the feature adds, and who holds it by default? A default
+   is a seed value, set at first-run setup; the brief says how an upgrade that brings a new
+   permission grants it without changing any grant the sysop made.
+7. Can this be used to take over, impersonate, lock out or strip account #1, or any staff
+   account, directly or through a chain (its email address, second factor, keys or role)?
+   Guard against each path, and name it in the brief.
 
 ## Design invariants (the critic checks each)
 
 - Every access gate fails closed on any error, including "no result".
+- Every action is gated by a registered permission; an action with no permission is a defect.
 - Auth, RBAC, session handling and event fan-out each have exactly one implementation; the
   design cites it by contract name and adds none.
 - Every state-changing operator action writes an audit entry with actor, target, before and
